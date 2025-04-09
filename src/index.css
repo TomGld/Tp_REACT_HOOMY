@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@theme{
+    /* Charte graphique */
+    --color-rose: #C2858C;
+    --color-purple: #272030;
+    --color-purple-title: #1C244C;
+    --color-orange-primary: #F08A4F;
+    --color-red: #C1272D;
+    --color-blue: #6CAFFF;
+    --color-white-primary: #F7F5F3;
+    --color-orange-secondary: #F7931E;
+    --color-white-secondary: #E8E0DB;
+    --color-gray: #868686;
+}
