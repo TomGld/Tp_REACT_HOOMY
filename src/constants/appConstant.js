@@ -1,12 +1,12 @@
 import { AiOutlineAppstoreAdd, AiOutlineHome, AiOutlineSearch } from "react-icons/ai";
-import { IMAGE_URL } from "./apiConstant";
+import { IMAGES_URL } from "./apiConstant";
 import { BiHeart, BiLibrary } from "react-icons/bi";
 import { MdFavoriteBorder } from "react-icons/md";
 import { FiSettings } from "react-icons/fi";
 
-export const USER_INFOS = 'userInfos';
+export const PROFILE_INFOS = 'profileInfos';
 
-export const IMG_LOGO = `${IMAGE_URL}/logoX2.png`;
+export const IMG_LOGO = `${IMAGES_URL}/logoX2.png`;
 
 //on va construire 2 tableaux pour notre sidebar
 // 1er pour la gestion des albums
