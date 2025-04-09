@@ -21,9 +21,8 @@ const Login = () => {
 
   return (
     <div>
-      <h1>Interface de connexion Hoomy</h1>
-      {loading ? <PageLoader /> : (
-        <ProfileList profiles={profileDetail} />
+      {loading ? <PageLoader/> : (
+          <ProfileList profiles={profileDetail} />
       )}
     </div>
   );
