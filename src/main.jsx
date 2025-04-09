@@ -4,13 +4,21 @@ import './index.css'
 import OfflineRouter from './router/OfflineRouter.jsx'
 import { RouterProvider } from 'react-router-dom'
 import { AuthContextProvider } from './contexts/AuthContext.jsx'
+import AppRouter from './router/AppRouter.jsx'
+import { Provider } from 'react-redux'
+import store from './store/store.js'
+
 import ButtonLoader from './components/Loader/ButtonLoader.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthContextProvider>
+      <Provider store={store}>
+        <AppRouter />
+      </Provide
       <RouterProvider router={OfflineRouter}/>
       
+
     </AuthContextProvider>
   </StrictMode>,
 )
