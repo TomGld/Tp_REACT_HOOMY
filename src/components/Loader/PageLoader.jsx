@@ -4,13 +4,13 @@ import { IMAGES_URL } from '../../constants/apiConstant'
 
 const PageLoader = () => {
   return (
-    <div className='flex flex-col items-center justify-center h-screen'>
-         <img src={`${IMAGES_URL}/logo/LogoX2.png`} alt='logo' className='h-20 object-contain' />
+    <div className='flex flex-col w-full items-center justify-center h-screen bg-purple-title'>
+         <img src={`${IMAGES_URL}/logo/LogoX2.png`} alt='logo' className='h-20 object-contain m-3' />
             <BarLoader
                 width={400}
                 color='#F08A4F'
             />
-        </div>
+    </div>
   )
 }
 

@@ -16,12 +16,14 @@ const Login = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Interface de connexion Hoomy</h1>
-      {loading ? <PageLoader/> : (
-          <ProfileList profiles={profileDetail} />
+    <>
+    {loading ? <PageLoader/> : (
+      <div className="w-full h-screen flex flex-col justify-center items-center">
+        <ProfileList profiles={profileDetail} />
+        <h1>Interface de connexion Hoomy</h1>
+      </div>
       )}
-    </div>
+    </>
   );
 };
 

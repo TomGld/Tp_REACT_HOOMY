@@ -6,7 +6,7 @@ const ProfileList = ({ profiles }) => { // Renommez "profileDetail" en "profiles
   }
  
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {profiles.map((profile) => (
         <div
           key={profile.id}
