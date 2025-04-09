@@ -24,3 +24,6 @@ Installer
 
 Installer Tailwind CSS https://tailwindcss.com/docs/installation/using-vite
 - npm install tailwindcss @tailwindcss/vite
+
+Installer react-spinners
+- npm install react-spinners --save
