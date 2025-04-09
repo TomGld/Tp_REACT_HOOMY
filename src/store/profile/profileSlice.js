@@ -2,30 +2,30 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { API_URL } from "../../constants/apiConstant";
 
-const userSlice = createSlice({
-    name: "users",
+const profileSlice = createSlice({
+    name: "profile",
     initialState: {
         loading: false,
-        userDetail: {},
+        profileDetail: {},
     },
     reducers: {
         setLoading: (state, action) => {
             state.loading = action.payload;
         },
-        setUserDetail: (state, action) => {
-            state.userDetail = action.payload;
+        setProfileDetail: (state, action) => {
+            state.profileDetail = action.payload;
         },
     }
 })
 
-export const { setLoading, setUserDetail } = userSlice.actions;
+export const { setLoading, setProfileDetail } = profileSlice.actions;
 
-//méthode qui récupère les info d'un user
-export const fetchUserDetail = (id) => async (dispatch) => {
+//méthode qui récupère les info d'un profile
+export const fetchProfileDetail = (id) => async (dispatch) => {
     try {
         dispatch(setLoading(true));
         const response = await axios.get(`${API_URL}/profiles/${id}`);
-        dispatch(setUserDetail(response.data));
+        dispatch(setProfileDetail(response.data));
     } catch (error) {
         console.log(`erreur lors du fetchUserDetail : ${error}`);
     } finally {
@@ -34,11 +34,11 @@ export const fetchUserDetail = (id) => async (dispatch) => {
 }
 
 //méthode qui récupère tous les profiles avec leurs avatars
-export const fetchAllUsers = () => async (dispatch) => {
+export const fetchAllProfile = () => async (dispatch) => {
     try {
         dispatch(setLoading(true));
         const response = await axios.get(`${API_URL}/profiles`);
-        dispatch(setUserDetail(response.data));
+        dispatch(setProfileDetail(response.data.member));
     } catch (error) {
         console.log(`erreur lors du fetchAllUsers : ${error}`);
     } finally {
@@ -47,4 +47,4 @@ export const fetchAllUsers = () => async (dispatch) => {
 }
 
 
-export default userSlice.reducer;
+export default profileSlice.reducer;

@@ -1,21 +1,21 @@
 import { createSelector } from "@reduxjs/toolkit";
 
-const selectLoading = (state) => state.users.loading;
-const selectUserDetail = (state) => state.users.userDetail;
+const selectLoading = (state) => state.profiles.loading;
+const selectProfileDetail = (state) => state.profiles.profileDetail;
 
 
-const selectUserData = createSelector(
+const selectProfileData = createSelector(
     [
         selectLoading,
-        selectUserDetail,
+        selectProfileDetail,
     ],
     (
         loading,
-        userDetail,
+        profileDetail,
     ) => ({
         loading,
-        userDetail,
+        profileDetail,
     })
 );
 
-export default selectUserData;
+export default selectProfileData;

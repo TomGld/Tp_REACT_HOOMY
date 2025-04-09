@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllUsers } from "../../store/profile/profileSlice";
+import { fetchAllProfile } from "../../store/profile/profileSlice";
 import selectUserData from "../../store/profile/profileSelector";
 import ProfileList from "../../components/Profile/profileList";
 
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { loading, userDetail } = useSelector(selectUserData);
+  const { loading, profileDetail } = useSelector(selectUserData);
 
   // Récupérer les profils lors du chargement de la page
   useEffect(() => {
-    dispatch(fetchAllUsers());
+    dispatch(fetchAllProfile());
   }, [dispatch]);
 
   return (
@@ -20,7 +20,7 @@ const Login = () => {
       {loading ? (
         <p>Chargement des profils...</p>
       ) : (
-        <ProfileList profiles={userDetail} />
+          <ProfileList profileDetail={profileDetail} />
       )}
     </div>
   );

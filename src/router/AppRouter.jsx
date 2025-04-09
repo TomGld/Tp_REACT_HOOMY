@@ -1,10 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuthContext } from "../contexts/AuthContext";
-import { USER_INFOS } from "../constants/appConstant";
-import useSubscriptionCheck from "../hooks/useSubscriptionCheck";
-import PageLoader from "../components/Loader/PageLoader";
+import { PROFILE_INFOS } from "../constants/appConstant";
 import { RouterProvider } from "react-router-dom";
-import OnlineRouter from "./OnlineRouter";
 import OfflineRouter from "./OfflineRouter";
 
 // Création d'un mini contexte pour la session
@@ -19,7 +16,7 @@ const AppRouter = () => {
     // on récupère grace au hook les données de notre contexte d'authentification
     const { userId, setUserId, setName } = useAuthContext();
     // on récupère les données de l'utilisateur dans le localStorage
-    const userInfo = JSON.parse(localStorage.getItem(USER_INFOS));
+    const userInfo = JSON.parse(localStorage.getItem(PROFILE_INFOS));
 
     useEffect(() => {
         const checkUserSession = async () => {
@@ -35,10 +32,7 @@ const AppRouter = () => {
         checkUserSession();
     }, [userId])
 
-    //on affiche le loader le temps du chargement
-    if (inSession === null || loadingSubscription) {
-        return <PageLoader />
-    }
+
 
     return (
         <SessionContext.Provider value={{ inSession }}>
