@@ -11,7 +11,7 @@ const OfflineRouter = createBrowserRouter([
 
         children: [
             {
-                path: "/login",
+                path: "/",
                 element: <Login />
             },
 

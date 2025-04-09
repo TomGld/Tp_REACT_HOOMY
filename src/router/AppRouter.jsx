@@ -1,42 +1,48 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useAuthContext } from "../contexts/AuthContext";
-import { PROFILE_INFOS } from "../constants/appConstant";
+import { PROFILE_INFOS} from "../constants/appConstant";
+import PageLoader from "../components/Loader/PageLoader";
 import { RouterProvider } from "react-router-dom";
+import OnlineRouter from "./OnlineRouter";
 import OfflineRouter from "./OfflineRouter";
+import { useAuthContext } from "../contexts/AuthContext";
 
-// Création d'un mini contexte pour la session
-const SessionContext = createContext({ inSession: false });
+// Création d'un mini context pour la session
+const SessionContext = createContext({inSession: false});
 
-// hook pour utiliser le contexte de session
+// Hook pour l'utiliser le contexte de session 
 export const useSessionContext = () => useContext(SessionContext);
 
 const AppRouter = () => {
-    // on crée un state pour gerer la session
+    // On crée un state pour gere la session 
     const [inSession, setInSession] = useState(null);
-    // on récupère grace au hook les données de notre contexte d'authentification
-    const { userId, setUserId, setName } = useAuthContext();
-    // on récupère les données de l'utilisateur dans le localStorage
-    const userInfo = JSON.parse(localStorage.getItem(PROFILE_INFOS));
+    // On récupère grace au hook les données de notre contexte d'authentification
+    const { profileId, setProfileId, setName } = useAuthContext();
+    // On récupère les données de l'utilisateur dans le localStorage
+    const profileInfo = JSON.parse(localStorage.getItem(PROFILE_INFOS));
 
     useEffect(() => {
-        const checkUserSession = async () => {
-            if (userInfo) {
-                setUserId(userInfo.userId);
-                setName(userInfo.name);
-                setInSession(true);
-            } else {
-                setInSession(false);
-            }
+      const checkUserSession = async () => {
+        if(profileInfo){
+            setProfileId(profileInfo.profileId);
+            setName(profileInfo.name);
+            setInSession(true);
+        }else{
+            setInSession(false);
         }
+      }
 
-        checkUserSession();
-    }, [userId])
+      checkUserSession();
 
-
+    }, [profileId])
+    
+    // On affiche le loader le temps du chargement
+    if(inSession === null){
+        return <PageLoader />
+    }
 
     return (
-        <SessionContext.Provider value={{ inSession }}>
-            <RouterProvider router={OfflineRouter} />
+        <SessionContext.Provider value = {{inSession}}>
+            <RouterProvider router={inSession ? OnlineRouter : OfflineRouter} />
         </SessionContext.Provider>
     )
 
