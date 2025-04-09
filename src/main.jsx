@@ -1,10 +1,14 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
+import OfflineRouter from './router/OfflineRouter.jsx'
+import { RouterProvider } from 'react-router-dom'
+import { AuthContextProvider } from './contexts/AuthContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <AuthContextProvider>
+      <RouterProvider router={OfflineRouter}/>
+    </AuthContextProvider>
   </StrictMode>,
 )
