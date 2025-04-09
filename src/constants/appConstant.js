@@ -17,7 +17,7 @@ export const dataAlbumNav = [
 ];
 
 // 2eme pour les options de l'utilisateur
-export const dataUserNav = [
+export const dataProfileNav = [
     { title: 'Voir les playlists', path: '/playlist', icon: AiOutlineAppstoreAdd },
     { title: 'Titres likés', path: '/wishlist', icon: MdFavoriteBorder },
     { title: 'Mon compte', path: '/account/:id', icon: FiSettings },

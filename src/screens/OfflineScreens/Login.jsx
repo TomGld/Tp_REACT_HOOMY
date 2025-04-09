@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllProfile } from "../../store/profile/profileSlice";
-import selectUserData from "../../store/profile/profileSelector";
 import ProfileList from "../../components/Profile/profileList";
 import PageLoader from "../../components/Loader/PageLoader";
+import selectProfileData from "../../store/profile/profileSelector";
 
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { loading, profileDetail } = useSelector(selectUserData);
+  const { loading, profileDetail } = useSelector(selectProfileData);
 
 
   // Récupérer les profils lors du chargement de la page
@@ -21,10 +21,8 @@ const Login = () => {
 
   return (
     <div>
-      <h1>Interface de connexion Hoomy</h1>
-      {loading ? <PageLoader /> : (
-        <ProfileList profiles={profileDetail} />
-
+      {loading ? <PageLoader/> : (
+          <ProfileList profiles={profileDetail} />
       )}
     </div>
   );

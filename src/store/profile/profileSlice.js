@@ -14,7 +14,7 @@ const profileSlice = createSlice({
         },
         setProfileDetail: (state, action) => {
             state.profileDetail = action.payload;
-        },
+        }
     }
 })
 
@@ -27,7 +27,7 @@ export const fetchProfileDetail = (id) => async (dispatch) => {
         const response = await axios.get(`${API_URL}/profiles/${id}`);
         dispatch(setProfileDetail(response.data));
     } catch (error) {
-        console.log(`erreur lors du fetchUserDetail : ${error}`);
+        console.log(`erreur lors du fetchProfileDetail : ${error}`);
     } finally {
         dispatch(setLoading(false));
     }
@@ -55,7 +55,8 @@ export const fetchAllProfile = () => async (dispatch) => {
 
         dispatch(setProfileDetail(profilesWithImages));
     } catch (error) {
-        console.log(`Erreur lors du fetchAllUsers : ${error}`);
+        console.log(`erreur lors du fetchAllProfiles : ${error}`);
+
     } finally {
         dispatch(setLoading(false));
     }

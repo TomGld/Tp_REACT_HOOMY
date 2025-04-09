@@ -6,16 +6,8 @@ const selectProfileDetail = (state) => state.profiles.profileDetail;
 
 const selectProfileData = createSelector(
     [
-        selectLoading,
-        selectProfileDetail,
-    ],
-    (
-        loading,
-        profileDetail,
-    ) => ({
-        loading,
-        profileDetail,
-    })
+        selectLoading, selectProfileDetail],
+    (loading, profileDetail) => ({loading, profileDetail})
 );
 
 export default selectProfileData;
