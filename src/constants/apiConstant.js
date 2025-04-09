@@ -4,22 +4,26 @@ export const API_ROOT = 'http://localhost:8080';
 //on déclare l'url de notre API
 export const API_URL = `${API_ROOT}/api`;
 //url pour les data_types
-export const DATATYPES_URL = `${API_ROOT}/data_types`;
+export const DATATYPES_URL = `${API_URL}/data_types`;
 //url pour les devices
-export const DEVICES_URL = `${API_ROOT}/devices`;
+export const DEVICES_URL = `${API_URL}/devices`;
 // url pour les event
-export const EVENTS_URL = `${API_ROOT}/events`;
+export const EVENTS_URL = `${API_URL}/events`;
 // url pour les images
-export const IMAGES_URL = `${API_ROOT}/images`;
+export const IMAGES_URL = `${API_URL}/images`;
+//url pour les avatars
+export const AVATARS_URL = `${API_ROOT}/images/avatars`;
+//url pour les logos
+export const LOGOS_URL = `${API_ROOT}/images/logo`;
 //url pour les profiles
-export const PROFILES_URL = `${API_ROOT}/profiles`;
+export const PROFILES_URL = `${API_URL}/profiles`;
 //url pour les rooms
-export const ROOMS_URL = `${API_ROOT}/rooms`;
+export const ROOMS_URL = `${API_URL}/rooms`;
 //url pour les settings_datas
-export const SETTINGDATAS_URL = `${API_ROOT}/setting_datas`;
+export const SETTINGDATAS_URL = `${API_URL}/setting_datas`;
 //url pour les settings_datas
-export const SETTINGTYPES_URL = `${API_ROOT}/setting_types`;
+export const SETTINGTYPES_URL = `${API_URL}/setting_types`;
 //url pour les standards
-export const STANDARDS_URL = `${API_ROOT}/standards`;
+export const STANDARDS_URL = `${API_URL}/standards`;
 //url pour les standards
-export const VIBES_URL = `${API_ROOT}/vibes`;
+export const VIBES_URL = `${API_URL}/vibes`;
