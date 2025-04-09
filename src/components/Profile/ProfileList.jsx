@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { AVATARS_URL } from "../../constants/apiConstant";
 
@@ -11,6 +12,7 @@ const ProfileList = ({ profiles }) => {
   const togglePinInput = (profileId) => {
     setActiveProfile(activeProfile === profileId ? null : profileId);
   };
+
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
