@@ -21,7 +21,7 @@ const AppRouter = () => {
     const profileInfo = JSON.parse(localStorage.getItem(PROFILE_INFOS));
 
     useEffect(() => {
-      const checkUserSession = async () => {
+      const checkProfileSession = async () => {
         if(profileInfo){
             setProfileId(profileInfo.profileId);
             setName(profileInfo.name);
@@ -31,7 +31,7 @@ const AppRouter = () => {
         }
       }
 
-      checkUserSession();
+      checkProfileSession();
 
     }, [profileId])
     
