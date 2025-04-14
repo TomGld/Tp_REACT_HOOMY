@@ -6,13 +6,13 @@ import { API_URL } from "../constants/apiConstant";
  * @param [object] profileInfo - l'utilisateur du local storage
  * @return {boolean} -true si  l'utilisateur est bien celui de la bdd, false sinon
  */
-export const checkProfile = async (profileInfo) => {
+export const checkProfile = async (profileInfos) => {
     try {
         // On récupère l'utilisateur dans le bdd avec l'id qui est en local storage
-        const response = await axios.get(`${API_URL}/profiles/${profileInfo.profileId}`);
+        const response = await axios.get(`${API_URL}/profiles/${profileInfos.profileId}`);
         const profile = response.data;
         // maintenant on va comparer les données de la bdd avec celle du local storage
-        if (profile.name === profileInfo.name) {
+        if (profile.name === profileInfos.name) {
             return true
         } else {
             return false
