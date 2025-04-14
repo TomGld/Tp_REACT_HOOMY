@@ -27,3 +27,6 @@ Installer Tailwind CSS https://tailwindcss.com/docs/installation/using-vite
 
 Installer react-spinners
 - npm install react-spinners --save
+
+Installer font montserrat alternates
+- npm install @fontsource/montserrat-alternates

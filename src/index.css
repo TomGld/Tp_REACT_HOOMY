@@ -1,4 +1,9 @@
 @import "tailwindcss";
+@import "@fontsource/montserrat-alternates";
+@import "@fontsource/montserrat-alternates/400.css";
+@import '@fontsource/montserrat-alternates/800.css';
+@import '@fontsource/montserrat-alternates/900.css';
+@import "@fontsource/montserrat-alternates/400-italic.css";
 
 @theme{
     /* Charte graphique */
@@ -12,4 +17,8 @@
     --color-orange-secondary: #F7931E;
     --color-white-secondary: #E8E0DB;
     --color-gray: #868686;
+}
+
+body {
+  font-family: "Montserrat Alternates";
 }
