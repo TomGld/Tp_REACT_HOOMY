@@ -42,8 +42,6 @@ const Login = () => {
         setErrorMessage('Code PIN incorrect');
       } else {
         const pin = response.data.pinCode;
-        console.log("pin", pin);
-        console.log("pinCode", pinCode);
         
         if (pin != pinCode) {
           setErrorMessage('Code PIN incorrect');
@@ -70,7 +68,6 @@ const Login = () => {
     <div>
       {loading ? <PageLoader /> : (
         <>
-        {errorMessage && <p className='text-red-500'>{errorMessage}</p>}
           <ProfileList
             profiles={profileDetail}
             onSelect={handleProfileSelect}

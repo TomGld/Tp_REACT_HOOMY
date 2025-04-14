@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuthContext } from "../contexts/AuthContext";
-import { checkProfile } from "../services/proflieSevice";
+import { checkProfile } from "../services/profileSevice";
 
 const useAuthCheck = (profileInfos) => {
     const navigate = useNavigate();
