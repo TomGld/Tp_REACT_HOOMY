@@ -18,13 +18,15 @@ const AppRouter = () => {
     // On récupère grace au hook les données de notre contexte d'authentification
     const { profileId, setProfileId, setName } = useAuthContext();
     // On récupère les données de l'utilisateur dans le localStorage
-    const profileInfo = JSON.parse(localStorage.getItem(PROFILE_INFOS));
+    const profileInfos = JSON.parse(localStorage.getItem(PROFILE_INFOS));
+    console.log('profileInfo', profileInfos);
+    
 
     useEffect(() => {
       const checkProfileSession = async () => {
-        if(profileInfo){
-            setProfileId(profileInfo.profileId);
-            setName(profileInfo.name);
+        if(profileInfos){
+            setProfileId(profileInfos.profileId);
+            setName(profileInfos.name);
             setInSession(true);
         }else{
             setInSession(false);

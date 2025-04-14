@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import { useAuthContext } from "../contexts/AuthContext";
 import { checkProfile } from "../services/proflieSevice";
 
-const useAuthCheck = (profileInfo) => {
+const useAuthCheck = (profileInfos) => {
     const navigate = useNavigate();
     const { signOut } = useAuthContext();
 
     const verifyProfile = async () => {
-        if(profileInfo && profileInfo.profileId){
-            const isValidProfile = await checkProfile(profileInfo);
+        if(profileInfos && profileInfos.profileId){
+            const isValidProfile = await checkProfile(profileInfos);
             // Si l'utilisateur n'est pas valide, on le deconnecte et on le redirige vers la page login
             if(!isValidProfile){
                 signOut();
@@ -22,7 +22,7 @@ const useAuthCheck = (profileInfo) => {
 
     useEffect(() => {
       verifyProfile();
-    }, [profileInfo, navigate])
+    }, [profileInfos, navigate])
 };
 
 export default useAuthCheck;

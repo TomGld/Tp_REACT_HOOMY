@@ -15,7 +15,6 @@ const AuthContext = createContext({
 const AuthContextProvider = ({ children }) => {
     const [profileId, setProfileId] = useState('');
     const [name, setName] = useState('');
-
     // On définit notre méthode singIn pour la connexion
     const signIn = async (profile) => {
         try {
@@ -36,7 +35,7 @@ const AuthContextProvider = ({ children }) => {
             setProfileId('');
             setName('');
             // On supprime les données de l'utilisateur dans le localStorage
-            localStorage.removeItem('PROFILE_INFOS');
+            localStorage.removeItem('profileInfos');
         } catch (error) {
             throw new Error(`Erreur lors de la déconnexion : ${error}`);
         }
