@@ -15,6 +15,8 @@ export const IMAGES_URL = `${API_URL}/images`;
 export const AVATARS_URL = `${API_ROOT}/images/avatars`;
 //url pour les logos
 export const LOGOS_URL = `${API_ROOT}/images/logo`;
+//url pour les icones
+export const ICONES_URL = `${API_ROOT}/images/icones`;
 //url pour les profiles
 export const PROFILES_URL = `${API_URL}/profiles`;
 //url pour les rooms
