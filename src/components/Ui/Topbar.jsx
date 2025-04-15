@@ -29,19 +29,18 @@ const TopBar = () => {
                   />
               </div>
 
-              {/* Logo de l'application */}
-              <img
-                  src={`${LOGOS_URL}/logoSmallX2.png`}
-                  alt="Logo"
-                  style={{
-                      position: 'absolute',
-                      height: '35px',
-                      left: '50%',
-                      transform: 'translateX(-50%)'
-                  }}
-              />
+            {/* Logo de l'application */}
+            <a href="/" style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
+                <img
+                    src={`${LOGOS_URL}/logoSmallX2.png`}
+                    alt="Logo"
+                    style={{
+                        height: '35px'
+                    }}
+                />
+            </a>
 
-              {/* Icone du compte */}
+            {/* Icone du compte */}
               <MdAccountCircle
                   size={35}
                   onMouseEnter={(e) => {
