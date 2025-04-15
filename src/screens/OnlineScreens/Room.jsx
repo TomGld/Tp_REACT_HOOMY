@@ -17,7 +17,7 @@ const Room = () => {
 
   return (
     loading ? <PageLoader /> :
-    <div className="flex flex-wrap justify-center gap-6 px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-wrap justify-center lg:justify-start gap-6 px-4 sm:px-6 lg:px-8">
         {rooms.map((rooms, index) => (
             <Card
             data={rooms}

@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <div style={{ backgroundColor: 'var(--color-white-primary)', minHeight: '100vh', padding: '20px' }}>
-      <TopBar />
+    
 
       <h1 style={{ fontWeight: 800, fontSize: 40 }}>Hello, {profile.name}</h1>
 
