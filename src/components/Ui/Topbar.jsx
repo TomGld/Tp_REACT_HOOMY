@@ -55,39 +55,40 @@ const TopBar = () => {
                   }}
               />
 
-              {/* Menu déroulant du compte */}
-              {showDropdown && (
-                  <div
-                      onMouseEnter={() => setShowDropdown(true)}
-                      onMouseLeave={() => setShowDropdown(false)}
-                      style={{
-                          position: 'absolute',
-                          top: '75px',
-                          right: '10px',
-                          backgroundColor: 'white',
-                          border: '1px solid #ccc',
-                          borderRadius: '5px',
-                          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                          padding: '10px',
-                          zIndex: 1000
-                      }}
-                  >
-                      <button
-                          onClick={() => {
-                              const confirmLogout = window.confirm('Voulez-vous vraiment vous déconnecter ?');
-                              if (confirmLogout) handleLogout();
-                          }}
-                          className='link-sidebar'
-                          style={{ display: 'flex', alignItems: 'center' }}
-                      >
-                          <FiLogOut className='w-6 h-6 mr-2' />
-                          Déconnexion
-                      </button>
-                  </div>
-              )}
-            </div>
+            {/* Menu déroulant du compte */}
+                          {showDropdown && (
+                              <div
+                                  onMouseEnter={() => setShowDropdown(true)}
+                                  onMouseLeave={() => setShowDropdown(false)}
+                                  style={{
+                                      position: 'absolute',
+                                      top: '45px',
+                                      right: '10px',
+                                      backgroundColor: 'white',
+                                      border: '1px solid #ccc',
+                                      borderRadius: '5px',
+                                      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                                      padding: '10px',
+                                      zIndex: 1000,
+                                      cursor: 'pointer' // Added cursor pointer
+                                  }}
+                              >
+                                  <button
+                                      onClick={() => {
+                                          const confirmLogout = window.confirm('Voulez-vous vraiment vous déconnecter ?');
+                                          if (confirmLogout) handleLogout();
+                                      }}
+                                      className='link-sidebar'
+                                      style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} // Added cursor pointer
+                                  >
+                                      <FiLogOut className='w-6 h-6 mr-2' />
+                                      Déconnexion
+                                  </button>
+                              </div>
+                          )}
+                        </div>
 
-            {/* Menu de navigation avec routes définies */}
+                        {/* Menu de navigation avec routes définies */}
             <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '10px' }}>
                 {[
                     { name: 'Playlists', route: '/playlists' },

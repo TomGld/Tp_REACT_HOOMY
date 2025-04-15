@@ -15,7 +15,6 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const { loading, profileDetail } = useSelector(selectProfileData);
   const [selectedProfile, setSelectedProfile] = useState(null);
-  console.log("selectedProfile", selectedProfile);
 
   const { signIn } = useAuthContext();
 
