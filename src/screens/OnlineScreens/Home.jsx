@@ -67,6 +67,7 @@ const Home = () => {
             color: 'white',
             position: 'relative',
           }}>
+            
             <img
               src={`${ICONES_URL}/MusicX2.png`}
               alt="Logo playlist"
