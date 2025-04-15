@@ -9,7 +9,6 @@ const Home = () => {
 
   return (
     <div style={{ backgroundColor: 'var(--color-white-primary)', minHeight: '100vh', padding: '20px' }}>
-    
 
       <h1 style={{ fontWeight: 800, fontSize: 40 }}>Hello, {profile.name}</h1>
 
@@ -67,6 +66,7 @@ const Home = () => {
             color: 'white',
             position: 'relative',
           }}>
+            
             <img
               src={`${ICONES_URL}/MusicX2.png`}
               alt="Logo playlist"
