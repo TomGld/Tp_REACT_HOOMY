@@ -90,10 +90,10 @@ const TopBar = () => {
             {/* Menu de navigation avec routes définies */}
             <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '10px' }}>
                 {[
-                    { name: 'Accueil', route: '/' },
-                    { name: 'Pièce', route: '/rooms' },
-                    { name: 'Ambiance', route: '/ambiance' },
-                    { name: 'Planning', route: '/planning' }
+                    { name: 'Playlists', route: '/playlists' },
+                    { name: 'Pièces', route: '/rooms' },
+                    { name: 'Ambiances', route: '/vibes' },
+                    { name: 'Planning', route: '/events' }
                 ].map(({ name, route }) => {
                     const isActive = window.location.pathname === route;
                     return (
