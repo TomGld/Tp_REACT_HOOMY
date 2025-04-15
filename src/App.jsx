@@ -2,6 +2,7 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { PROFILE_INFOS } from './constants/appConstant';
 import useAuthCheck from './hooks/useAuthCheck';
+import TopBar from './components/Ui/TopBar';
 
 const App = () => {
 
@@ -15,6 +16,7 @@ const App = () => {
 
   return (
     <>
+      <TopBar />
       <Outlet />
     </>
   )
