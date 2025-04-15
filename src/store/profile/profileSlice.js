@@ -49,7 +49,7 @@ export const fetchAllProfile = () => async (dispatch) => {
                 } catch (error) {
                     console.log(`Erreur lors de la récupération de l'image pour le profil ${profile.id}: ${error}`);
                     return { ...profile, imagePath: null }; // En cas d'erreur, on met une valeur par défaut
-                }f
+                }
             })
         );
 

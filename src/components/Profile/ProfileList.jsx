@@ -7,7 +7,8 @@ const ProfileList = ({
   selectedProfile,
   pinCode,
   onPinChange,
-  onSubmitPin
+  onSubmitPin,
+  errorMessage
 }) => {
   if (!profiles || profiles.length === 0) {
     return <p className="text-center text-gray-500">Aucun profil trouvé.</p>;
@@ -19,6 +20,7 @@ const ProfileList = ({
         const isSelected = selectedProfile && selectedProfile.id === profile.id;
 
         return (
+      
           <div
             key={profile.id}
             onClick={() => onSelect(profile)}
@@ -29,7 +31,7 @@ const ProfileList = ({
               alt={`Avatar de ${profile.name}`}
               className="w-36 h-36 rounded-full object-cover mb-2 mx-auto"
             />
-            <h4 className="text-lg font-medium">{profile.name}</h4>
+            <h4 className="text-lg text-white-primary font-medium">{profile.name}</h4>
 
             {/* PIN input only for selected profile */}
             {isSelected && (
@@ -38,12 +40,13 @@ const ProfileList = ({
                 onSubmit={onSubmitPin}
                 className="mt-3"
               >
+                {errorMessage && <p className='text-red-500 flex flex-wrap justify-center'>{errorMessage}</p>}
                 <input
                   type="password"
                   placeholder="Code PIN"
                   value={pinCode}
                   onChange={onPinChange}
-                  className="mt-1 w-full px-3 py-1 border border-gray-400 rounded-md focus:outline-none focus:ring focus:border-blue-400"
+                  className="mt-1 w-full px-3 py-1 border text-white-primary border-gray-400 rounded-md focus:outline-none focus:ring focus:border-blue-400"
                 />
                 <button
                   type="submit"
