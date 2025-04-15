@@ -3,6 +3,8 @@ import App from "../App";
 import Home from "../screens/OnlineScreens/Home";
 import ErrorPage from "../screens/ErrorScreens/ErrorPage";
 import Room from "../screens/OnlineScreens/Room";
+import Vibe from "../screens/OnlineScreens/Vibe";
+import Playlist from "../screens/OnlineScreens/Playlist";
 
 
 const OnlineRouter = createBrowserRouter([
@@ -17,6 +19,14 @@ const OnlineRouter = createBrowserRouter([
             {
                 path: "/rooms",
                 element: <Room />
+            },
+            {
+                path: "/vibes",
+                element: <Vibe />
+            },
+            {
+                path: "/playlists",
+                element: <Playlist />
             },
            
         ]
