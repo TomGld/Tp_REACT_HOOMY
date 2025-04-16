@@ -19,7 +19,6 @@ const AppRouter = () => {
     const { profileId, setProfileId, setName } = useAuthContext();
     // On récupère les données de l'utilisateur dans le localStorage
     const profileInfos = JSON.parse(localStorage.getItem(PROFILE_INFOS));
-
     
 
     useEffect(() => {

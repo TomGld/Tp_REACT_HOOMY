@@ -20,14 +20,40 @@ const TopBar = () => {
 
     return (
         <>
-            <div className="topbar" style={{ position: 'relative', display: 'flex', justifyContent: 'flex-end', padding: '10px' }}>
+            <div className="topbar" style={{
+                position: 'relative',
+                display: 'flex',
+                justifyContent: 'flex-end',
+                alignItems: 'center',
+                padding: '10px 20px',
+                backgroundColor: 'white',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+            }}>
+                {/* Search Icon */}
+                <div style={{
+                    position: 'absolute',
+                    left: '20px',
+                    display: 'flex',
+                    alignItems: 'center'
+                }}>
+                    <FaSearch size={22} color="#666" />
+                </div>
 
-              {/* Loupe de recherche */}
-              <div style={{ position: 'absolute', left: '10px', display: 'flex', alignItems: 'center' }}>
-                  <FaSearch 
-                  size={25}
-                  />
-              </div>
+                {/* Logo */}
+                <a href="/" style={{
+                    position: 'absolute',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    display: 'flex',
+                    alignItems: 'center'
+                }}>
+                    <img
+                        src={`${LOGOS_URL}/logoSmallX2.png`}
+                        alt="Logo"
+                        style={{ height: '35px' }}
+                    />
+                </a>
+
 
             {/* Logo de l'application */}
             <Link to="/" className="absolute left-1/2 transform -translate-x-1/2">
@@ -73,7 +99,8 @@ const TopBar = () => {
                                   </button>
                               </div>
                           )}
-                        </div>
+            </div>
+
 
             {/* Menu de navigation avec routes définies */}
             <div className="relative flex justify-center gap-5 mt-2">

@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@coreui/coreui": "^5.2.0",
+    "@coreui/react": "^5.5.0",
     "@fontsource/montserrat-alternates": "^5.2.5",
     "@reduxjs/toolkit": "^2.6.1",
     "@tailwindcss/vite": "^4.0.17",
