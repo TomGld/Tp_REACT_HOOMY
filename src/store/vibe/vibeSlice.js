@@ -2,37 +2,59 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { API_URL } from "../../constants/apiConstant";
 
-const VibeSlice = createSlice({
+const vibeSlice = createSlice({
     name: "vibe",
     initialState: {
         loading: false,
-        vibe: [],
+        vibes: [],
         vibeDetail: {}
     },
     reducers: {
         setLoading: (state, action) => {
             state.loading = action.payload;
         },
-        setVibe: (state, action) => {
-            state.vibe = action.payload;
+        setVibes: (state, action) => {
+            state.vibes = action.payload;
         },
         setVibeDetail: (state, action) => {
             state.vibeDetail = action.payload;
         },
     },
 });
-export const { setLoading, setVibe, setVibeDetail } = VibeSlice.actions;
+export const { setLoading, setVibes, setVibeDetail } = vibeSlice.actions;
 
-export const fetchVibe = () => async (dispatch) => {
+/**
+ * Récupération de toutes les vibes
+ * @param {function} dispatch - Fonction de dispatch
+ * @returns 
+ */
+export const fetchVibes = () => async (dispatch) => {
     try {
         dispatch(setLoading(true));
         const response = await axios.get(`${API_URL}/vibes?page=1`);
-        dispatch(setVibe(response.data.member));
+        dispatch(setVibes(response.data.member));
     } catch (error) {
-        console.error(`Error fetching vibe: ${error}`);
+        console.error(`Error fetching vibes: ${error}`);
     } finally {
         dispatch(setLoading(false));
     }
 }
 
-export default VibeSlice.reducer;
+/**
+ * Récupération des détails d'une vibe
+ * @param {number} id - ID de la vibe
+ * @returns 
+ */
+export const fetchVibeDetail = (id) => async (dispatch) => {
+    try {
+        dispatch(setLoading(true));
+        const response = await axios.get(`${API_URL}/vibes/${id}`);
+        dispatch(setVibeDetail(response.data));
+    } catch (error) {
+        console.error(`Error fetching vibe detail: ${error}`);
+    } finally {
+        dispatch(setLoading(false));
+    }
+}
+
+export default vibeSlice.reducer;
