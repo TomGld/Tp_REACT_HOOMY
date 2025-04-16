@@ -3,6 +3,7 @@ import App from "../App";
 import Home from "../screens/OnlineScreens/Home";
 import ErrorPage from "../screens/ErrorScreens/ErrorPage";
 import Room from "../screens/OnlineScreens/Room";
+import RoomDetail from "../screens/OnlineScreens/RoomDetail";
 
 
 const OnlineRouter = createBrowserRouter([
@@ -18,6 +19,10 @@ const OnlineRouter = createBrowserRouter([
                 path: "/rooms",
                 element: <Room />
             },
+            {
+                path: "/rooms/:id",
+                element: <RoomDetail />
+            }
            
         ]
     }

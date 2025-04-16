@@ -7,7 +7,7 @@ const roomSlice = createSlice({
     initialState: {
         loading: false,
         rooms: [],
-        roomsDetail: {}
+        roomDetails: [],
     },
     reducers: {
         setLoading: (state, action) => {
@@ -16,12 +16,12 @@ const roomSlice = createSlice({
         setRooms: (state, action) => {
             state.rooms = action.payload;
         },
-        setRoomsDetail: (state, action) => {
-            state.roomsDetail = action.payload;
+        setRoomDetails: (state, action) => {
+            state.roomDetails = action.payload;
         },
     },
 });
-export const { setLoading, setRooms, setRoomsDetail } = roomSlice.actions;
+export const { setLoading, setRooms, setRoomDetails } = roomSlice.actions;
 
 export const fetchRooms = () => async (dispatch) => {
     try {
@@ -30,6 +30,19 @@ export const fetchRooms = () => async (dispatch) => {
         dispatch(setRooms(response.data.member));
     } catch (error) {
         console.error(`Error fetching rooms: ${error}`);
+    } finally {
+        dispatch(setLoading(false));
+    }
+}
+
+// Méthode pour récupérer les détails d'une salle
+export const fetchRoomDetails = (id) => async (dispatch) => {
+    try {
+        dispatch(setLoading(true));
+        const response = await axios.get(`${API_URL}/rooms/${id}`);
+        dispatch(setRoomDetails(response.data));
+    } catch (error) {
+        console.error(`Error fetching room details: ${error}`);
     } finally {
         dispatch(setLoading(false));
     }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllProfile, setLoading } from "../../store/profile/profileSlice";
-import { API_URL } from "../../constants/apiConstant";
+import { API_URL, LOGOS_URL } from "../../constants/apiConstant";
 import ProfileList from "../../components/Profile/profileList";
 import PageLoader from "../../components/Loader/PageLoader";
 import selectProfileData from "../../store/profile/profileSelector";
@@ -68,6 +68,9 @@ const Login = () => {
     <div>
       {loading ? <PageLoader /> : (
         <>
+         <div className='w-full flex justify-center items-center py-8 rounded-lg  '>
+            <img src={`${LOGOS_URL}/LogoX2.png`} alt='logo' className='h-20 object-contain' />
+          </div>
           <ProfileList
             profiles={profileDetail}
             onSelect={handleProfileSelect}
