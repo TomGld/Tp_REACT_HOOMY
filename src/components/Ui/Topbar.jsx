@@ -4,7 +4,7 @@ import { MdAccountCircle } from 'react-icons/md'
 import { LOGOS_URL } from '../../constants/apiConstant'
 import { FaSearch } from 'react-icons/fa'
 import { useAuthContext } from '../../contexts/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 const TopBar = () => {
@@ -30,15 +30,13 @@ const TopBar = () => {
               </div>
 
             {/* Logo de l'application */}
-            <a href="/" style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
+            <Link to="/" className="absolute left-1/2 transform -translate-x-1/2">
                 <img
                     src={`${LOGOS_URL}/logoSmallX2.png`}
                     alt="Logo"
-                    style={{
-                        height: '35px'
-                    }}
+                    className="h-9"
                 />
-            </a>
+            </Link>
 
             {/* Icone du compte */}
               <MdAccountCircle
@@ -56,25 +54,14 @@ const TopBar = () => {
               />
 
             {/* Menu déroulant du compte */}
-                          {showDropdown && (
-                              <div
-                                  onMouseEnter={() => setShowDropdown(true)}
-                                  onMouseLeave={() => setShowDropdown(false)}
-                                  style={{
-                                      position: 'absolute',
-                                      top: '45px',
-                                      right: '10px',
-                                      backgroundColor: 'white',
-                                      border: '1px solid #ccc',
-                                      borderRadius: '5px',
-                                      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                                      padding: '10px',
-                                      zIndex: 1000,
-                                      cursor: 'pointer' // Added cursor pointer
-                                  }}
-                              >
-                                  <button
-                                      onClick={() => {
+                                      {showDropdown && (
+                                          <div
+                                              onMouseEnter={() => setShowDropdown(true)}
+                                              onMouseLeave={() => setShowDropdown(false)}
+                                              className="absolute top-11 right-2 bg-white border border-gray-300 rounded-md shadow-md p-2 z-50 cursor-pointer"
+                                          >
+                                              <button
+                                                  onClick={() => {
                                           const confirmLogout = window.confirm('Voulez-vous vraiment vous déconnecter ?');
                                           if (confirmLogout) handleLogout();
                                       }}
@@ -88,8 +75,8 @@ const TopBar = () => {
                           )}
                         </div>
 
-                        {/* Menu de navigation avec routes définies */}
-            <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '10px' }}>
+            {/* Menu de navigation avec routes définies */}
+            <div className="relative flex justify-center gap-5 mt-2">
                 {[
                     { name: 'Playlists', route: '/playlists' },
                     { name: 'Pièces', route: '/rooms' },
@@ -101,15 +88,11 @@ const TopBar = () => {
                         <button
                             key={name}
                             onClick={() => navigate(route)}
-                            style={{
-                                backgroundColor: isActive ? 'var(--color-rose)' : 'transparent',
-                                color: isActive ? 'white' : 'black',
-                                border: 'none',
-                                padding: '10px 20px',
-                                borderRadius: '5px',
-                                cursor: 'pointer',
-                                transition: 'background-color 300ms, color 300ms'
-                            }}
+                            className={`px-4 py-2 rounded-md transition-colors duration-300 ${
+                                isActive
+                                    ? 'bg-rose text-white'
+                                : 'bg-transparent text-black hover:bg-orange-primary'
+                            }`}
                         >
                             {name}
                         </button>
