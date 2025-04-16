@@ -1,10 +1,10 @@
 import React from 'react'
-import { API_ROOT, AVATARS_URL, IMAGES_URL } from '../../constants/apiConstant';
+import { API_ROOT, AVATARS_URL, IMAGES_URL, ROOMSIMG_URL } from '../../constants/apiConstant';
 
 const Card = ({ data, index }) => {
   const roomLabel = data?.label ?? "Room inconnu";
   const roomId = data?.id ?? 0;
-  const roomImage = `${AVATARS_URL}/${data?.image?.imagePath}` ?? null;
+  const roomImage = `${ROOMSIMG_URL}/${data?.image?.imagePath}` ?? null;
   console.log("roomImage", roomImage);
 
 
