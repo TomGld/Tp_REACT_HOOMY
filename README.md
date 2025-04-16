@@ -30,3 +30,6 @@ Installer react-spinners
 
 Installer font montserrat alternates
 - npm install @fontsource/montserrat-alternates
+
+Installer coreUI react
+- npm install @coreui/react @coreui/coreui

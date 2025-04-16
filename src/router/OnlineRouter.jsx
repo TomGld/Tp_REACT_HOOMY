@@ -25,7 +25,8 @@ const OnlineRouter = createBrowserRouter([
             {
                 path: "/rooms/:id",
                 element: <RoomDetail />
-            }
+            },
+            {
                 path: "/vibes",
                 element: <Vibe />
             },
