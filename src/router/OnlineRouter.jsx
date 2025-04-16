@@ -7,6 +7,7 @@ import RoomDetail from "../screens/OnlineScreens/RoomDetail";
 import Vibe from "../screens/OnlineScreens/Vibe";
 import Playlist from "../screens/OnlineScreens/Playlist";
 import VibeDetail from "../components/Card/VibeDetail";
+import Event from "../screens/OnlineScreens/Event";
 
 
 const OnlineRouter = createBrowserRouter([
@@ -37,6 +38,10 @@ const OnlineRouter = createBrowserRouter([
             {
                 path: "/vibes/:id",
                 element: <VibeDetail />
+            },
+            {
+                path: "/events",
+                element: <Event />
             },
            
         ]

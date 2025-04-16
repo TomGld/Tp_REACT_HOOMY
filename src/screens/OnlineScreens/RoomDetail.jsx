@@ -16,7 +16,6 @@ const RoomDetail = () => {
 
   const roomDevices = roomDetails?.devices || [];
   const roomVibes = roomDetails?.vibe || [];
-  console.log("&&&", roomVibes);
 
   useEffect(() => {
     dispatch(fetchRoomDetails(id));
