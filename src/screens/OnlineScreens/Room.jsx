@@ -6,28 +6,29 @@ import PageLoader from '../../components/Loader/PageLoader';
 import Card from '../../components/Card/Card';
 
 const Room = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(fetchRooms());
-    }, [dispatch])
+  useEffect(() => {
+    dispatch(fetchRooms());
+  }, [dispatch])
 
-    const { loading, rooms  } = useSelector(selectRoomData);
-    console.log("data",rooms);
+  const { loading, rooms } = useSelector(selectRoomData);
 
   return (
-    loading ? <PageLoader /> :
-    <div className="flex flex-wrap justify-center lg:justify-start gap-6 px-4 sm:px-6 lg:px-8">
-        {rooms.map((rooms, index) => (
+    loading ? <PageLoader /> : (
+      <div className="bg-white-primary min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap justify-center lg:justify-start gap-8">
+          {rooms.map((room, index) => (
             <Card
-            data={rooms}
-            key={rooms.id}
-            index={index}
+              data={room}
+              key={room.id}
+              index={index}
             />
-           
-        ))}
-    </div>
-  )
+          ))}
+        </div>
+      </div>
+    )
+  );
 }
 
 export default Room

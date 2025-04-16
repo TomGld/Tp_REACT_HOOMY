@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom';
 import { PROFILE_INFOS } from './constants/appConstant';
 import useAuthCheck from './hooks/useAuthCheck';
 import TopBar from './components/Ui/TopBar';
-import PageLoader from './components/Loader/PageLoader';
 
 const App = () => {
   const profile = JSON.parse(localStorage.getItem(PROFILE_INFOS));
@@ -13,13 +12,7 @@ const App = () => {
 
   return (
     <>
-      {isLoading && (
-        <div>
-          <PageLoader />
-        </div>
-      )}
-
-      {!isLoading && <TopBar />}
+      <TopBar />
       <Outlet />
     </>
   );

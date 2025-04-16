@@ -2,12 +2,12 @@ import { createSelector } from "@reduxjs/toolkit";
 
 const selectLoading = (state) => state.rooms.loading;
 const selectRooms = (state) => state.rooms.rooms;
-const selectRoomsDetail = (state) => state.rooms.roomsDetail;
+const selectRoomDetails = (state) => state.rooms.roomDetails;
 
 const selectRoomData = createSelector(
 
-    [selectLoading, selectRooms, selectRoomsDetail],
-    (loading, rooms, roomsDetail) => ({ loading, rooms, roomsDetail })
+    [selectLoading, selectRooms, selectRoomDetails],
+    (loading, rooms, roomDetails) => ({ loading, rooms, roomDetails })
 
 );
 export default selectRoomData;
