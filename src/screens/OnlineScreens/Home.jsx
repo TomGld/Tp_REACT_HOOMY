@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import TopBar from '../../components/Ui/TopBar'
 import { FaRegCircle } from 'react-icons/fa';
 import { ICONES_URL } from '../../constants/apiConstant';
 
