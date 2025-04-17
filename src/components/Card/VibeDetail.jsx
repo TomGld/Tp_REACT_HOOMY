@@ -6,6 +6,7 @@ import VibeSmall from './VibeSmall';
 import { Link, useParams } from 'react-router-dom';
 import PageLoader from '../Loader/PageLoader';
 import VibeForm from './VibeForm';
+import Device from '../Device/Device';
 
 const VibeDetail = () => {
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const VibeDetail = () => {
 
     //Récupération de la vibe dans le store
     const { loading, vibeDetail } = useSelector(selectVibeData);
+    console.log('vibeDetail', vibeDetail);
 
 
     //Récupération des vibes existantes par le fetch
@@ -29,9 +31,14 @@ const VibeDetail = () => {
         <>
           <VibeForm vibe={vibeDetail} />
 
-
+          {vibeDetail?.settingData?.length === 1 ? (
+            <Device settingData={vibeDetail.settingData[0]} />
+          ) : (
+            vibeDetail?.settingData?.map((settingData, index) => (
+              <Device key={index} settingData={settingData} />
+            ))
+          )}
         </>
-      
   )
 }
 
