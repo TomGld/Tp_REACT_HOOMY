@@ -33,3 +33,6 @@ Installer font montserrat alternates
 
 Installer coreUI react
 - npm install @coreui/react @coreui/coreui
+
+Installer le slider (mui/material) :
+- npm install @mui/material @emotion/react @emotion/styled
