@@ -30,7 +30,7 @@ const OnlineRouter = createBrowserRouter([
                 element: <RoomDevice />
             },
             {
-                path : "/planning",
+                path : "/events",
                 element : <Planning />
             }
            

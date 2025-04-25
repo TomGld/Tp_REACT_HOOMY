@@ -12,7 +12,7 @@ const store = configureStore({
         profiles: profilesReducer,
         rooms: roomsReducer,
         devices: devicesReducer,
-        vibes: vibesReducer,
+        vibe: vibesReducer,
     }
 });
 
