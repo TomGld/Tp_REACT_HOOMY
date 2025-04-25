@@ -6,10 +6,6 @@ import selectRoomData from '../../store/room/roomSelector'
 import PageLoader from '../../components/Loader/PageLoader'
 import DetailTop from '../../components/Detail/DetailTop'
 import { BiPlus } from 'react-icons/bi'
-import { CButton } from '@coreui/react'
-import { SlArrowDown, SlArrowUp } from 'react-icons/sl'
-import { Collapse } from '@coreui/coreui'
-import InfoVibe from '../../components/Detail/ButtonVibe'
 import Device from '../../components/Device'
 import ButtonVibe from '../../components/Detail/ButtonVibe'
 
@@ -20,7 +16,6 @@ const RoomDetail = () => {
 
   const roomDevices = roomDetails?.devices || [];
   const roomVibes = roomDetails?.vibe || [];
-  console.log("&&&", roomVibes);
 
   useEffect(() => {
     dispatch(fetchRoomDetails(id));
@@ -41,7 +36,7 @@ const RoomDetail = () => {
         {/* Add Device Button */}
         <div className="flex justify-center mb-6">
           <Link
-            to="#"
+            to={`/rooms/${id}/add-device`}
             className="bg-purple hover:bg-orange-primary transition duration-300 px-6 py-3 rounded-full flex items-center gap-2 text-white-primary font-medium shadow-md"
           >
             <BiPlus size={20} />
