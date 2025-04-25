@@ -114,10 +114,10 @@ const TopBar = () => {
                 flexWrap: 'wrap'
             }}>
                 {[
-                    { name: 'Accueil', route: '/' },
-                    { name: 'Pièce', route: '/rooms' },
-                    { name: 'Ambiance', route: '/ambiance' },
-                    { name: 'Planning', route: '/planning' }
+                    { name: 'Playlists', route: '/playlists' },
+                    { name: 'Pièces', route: '/rooms' },
+                    { name: 'Ambiances', route: '/vibes' },
+                    { name: 'Planning', route: '/events' }
                 ].map(({ name, route }) => {
                     const isActive = window.location.pathname === route;
                     return (

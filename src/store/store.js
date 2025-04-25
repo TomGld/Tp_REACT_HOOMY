@@ -5,6 +5,7 @@ import roomsReducer from './room/roomSlice';
 import devicesReducer from './device/deviceSlice';
 import vibesReducer from './Vibe/vibeSlice';
 
+
 const store = configureStore({
     reducer: {
         //TODO: ajouter les reducers ici
