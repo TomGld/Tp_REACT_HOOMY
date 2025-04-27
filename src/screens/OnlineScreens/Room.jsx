@@ -6,13 +6,13 @@ import PageLoader from '../../components/Loader/PageLoader';
 import Card from '../../components/Card/Card';
 
 const Room = () => {
+  const { loading, rooms } = useSelector(selectRoomData);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchRooms());
   }, [dispatch])
 
-  const { loading, rooms } = useSelector(selectRoomData);
 
   return (
     loading ? <PageLoader /> : (

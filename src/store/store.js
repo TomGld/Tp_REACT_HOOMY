@@ -2,7 +2,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import profilesReducer from './profile/profileSlice';
 import roomsReducer from './room/roomSlice';
-import vibeReducer from './vibe/vibeSlice';
+import devicesReducer from './device/deviceSlice';
+import vibesReducer from './Vibe/vibeSlice';
 
 
 const store = configureStore({
@@ -10,7 +11,8 @@ const store = configureStore({
         //TODO: ajouter les reducers ici
         profiles: profilesReducer,
         rooms: roomsReducer,
-        vibe: vibeReducer,
+        devices: devicesReducer,
+        vibe: vibesReducer,
     }
 });
 

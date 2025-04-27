@@ -33,3 +33,13 @@ Installer font montserrat alternates
 
 Installer coreUI react
 - npm install @coreui/react @coreui/coreui
+
+Installer switch headlessui
+- npm install @headlessui/react
+
+Installer calendar 
+- npm i react-calendar
+
+Installer date en français
+- npm install date-fns
+
