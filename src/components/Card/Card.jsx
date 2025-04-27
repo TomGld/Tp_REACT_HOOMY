@@ -1,6 +1,7 @@
 import React from 'react'
-import { ROOMSIMG_URL } from '../../constants/apiConstant';
+import { API_ROOT, AVATARS_URL, IMAGES_URL, ROOMSIMG_URL } from '../../constants/apiConstant';
 import { Link } from 'react-router-dom';
+
 
 const Card = ({ data, index }) => {
   const roomLabel = data?.label ?? "Room inconnu";

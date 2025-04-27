@@ -4,7 +4,7 @@ import { MdAccountCircle } from 'react-icons/md'
 import { LOGOS_URL } from '../../constants/apiConstant'
 import { FaSearch } from 'react-icons/fa'
 import { useAuthContext } from '../../contexts/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 const TopBar = () => {
@@ -54,65 +54,56 @@ const TopBar = () => {
                     />
                 </a>
 
-                {/* Account Icon */}
-                <div style={{ marginRight: '10px', position: 'relative' }}>
-                    <MdAccountCircle
-                        size={35}
-                        style={{ cursor: 'pointer', transition: 'color 300ms' }}
-                        onMouseEnter={() => setShowDropdown(true)}
-                        onMouseLeave={() => setShowDropdown(false)}
-                    />
 
-                    {/* Dropdown */}
-                    {showDropdown && (
-                        <div
-                            onMouseEnter={() => setShowDropdown(true)}
-                            onMouseLeave={() => setShowDropdown(false)}
-                            style={{
-                                position: 'absolute',
-                                top: '45px',
-                                right: 0,
-                                backgroundColor: 'white',
-                                border: '1px solid #eee',
-                                borderRadius: '8px',
-                                boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-                                padding: '10px',
-                                zIndex: 1000,
-                                minWidth: '150px'
-                            }}
-                        >
-                            <button
-                                onClick={() => {
-                                    const confirmLogout = window.confirm('Voulez-vous vraiment vous déconnecter ?');
-                                    if (confirmLogout) handleLogout();
-                                }}
-                                className='link-sidebar'
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    color: '#333',
-                                    backgroundColor: 'transparent',
-                                    border: 'none',
-                                    cursor: 'pointer',
-                                    fontSize: '14px'
-                                }}
-                            >
-                                <FiLogOut className='w-5 h-5 mr-2' />
-                                Déconnexion
-                            </button>
-                        </div>
-                    )}
-                </div>
+            {/* Logo de l'application */}
+            <Link to="/" className="absolute left-1/2 transform -translate-x-1/2">
+                <img
+                    src={`${LOGOS_URL}/logoSmallX2.png`}
+                    alt="Logo"
+                    className="h-9"
+                />
+            </Link>
+
+            {/* Icone du compte */}
+              <MdAccountCircle
+                  size={35}
+                  onMouseEnter={(e) => {
+                      e.target.style.transition = 'color 300ms';
+                      e.target.style.color = '#F08A4F';
+                      setShowDropdown(true);
+                  }}
+                  onMouseLeave={(e) => {
+                      e.target.style.transition = 'color 300ms';
+                      e.target.style.color = '';
+                      setShowDropdown(false);
+                  }}
+              />
+
+            {/* Menu déroulant du compte */}
+                                      {showDropdown && (
+                                          <div
+                                              onMouseEnter={() => setShowDropdown(true)}
+                                              onMouseLeave={() => setShowDropdown(false)}
+                                              className="absolute top-11 right-2 bg-white border border-gray-300 rounded-md shadow-md p-2 z-50 cursor-pointer"
+                                          >
+                                              <button
+                                                  onClick={() => {
+                                          const confirmLogout = window.confirm('Voulez-vous vraiment vous déconnecter ?');
+                                          if (confirmLogout) handleLogout();
+                                      }}
+                                      className='link-sidebar'
+                                      style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} // Added cursor pointer
+                                  >
+                                      <FiLogOut className='w-6 h-6 mr-2' />
+                                      Déconnexion
+                                  </button>
+                              </div>
+                          )}
             </div>
 
-            {/* Navigation */}
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                gap: '16px',
-                marginTop: '10px',
-                flexWrap: 'wrap'
-            }}>
+
+            {/* Menu de navigation avec routes définies */}
+            <div className="relative flex justify-center gap-5 mt-2">
                 {[
                     { name: 'Playlists', route: '/playlists' },
                     { name: 'Pièces', route: '/rooms' },
@@ -124,17 +115,11 @@ const TopBar = () => {
                         <button
                             key={name}
                             onClick={() => navigate(route)}
-                            style={{
-                                backgroundColor: isActive ? 'var(--color-rose)' : 'transparent',
-                                color: isActive ? 'white' : '#333',
-                                border: 'none',
-                                padding: '8px 18px',
-                                borderRadius: '6px',
-                                cursor: 'pointer',
-                                fontWeight: '500',
-                                fontSize: '14px',
-                                transition: 'all 0.3s ease'
-                            }}
+                            className={`px-4 py-2 rounded-md transition-colors duration-300 ${
+                                isActive
+                                    ? 'bg-rose text-white'
+                                : 'bg-transparent text-black hover:bg-orange-primary'
+                            }`}
                         >
                             {name}
                         </button>

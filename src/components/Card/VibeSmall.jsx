@@ -3,72 +3,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchVibe } from '../../store/Vibe/vibeSlice';
 import selectVibeData from '../../store/Vibe/vibeSelector';
 import PageLoader from '../Loader/PageLoader';
+
 import { ICONES_URL, LOGOS_URL } from '../../constants/apiConstant';
+import { Link } from 'react-router-dom';
 
-const VibeSmall = () => {
-  const dispatch = useDispatch();
-
-
-  //Récupération des vibes existantes par le fetch
-
-      useEffect(() => {
-        dispatch(fetchVibe());
-      }, [dispatch])
-
-  const { loading, vibe } = useSelector(selectVibeData);
-  console.log("dataVibes", vibe);
+const VibeSmall = ({vibe}) => {
 
   return (
     <div>
-      {loading ? <PageLoader /> : (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
-          {vibe.map((v, index) => (
-            <div key={index} style={{
-              width: '120px',
-              height: '150px',
-              backgroundColor: '#e5dfdb',
-              borderRadius: '70px 70px 20px 20px',
-              boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-              position: 'relative',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'flex-end',
-              paddingBottom: '15px',
-              fontFamily: 'sans-serif',
-              margin: '3px'
-            }}>
-              <div style={{
-                position: 'absolute',
-                top: '20px',
-                width: '70px',
-                height: '70px',
-                backgroundColor: 'white',
-                borderRadius: '50%',
-                overflow: 'hidden',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
+        <div className="flex flex-wrap gap-1">
+            <Link 
+              to={`/vibes/${vibe.id}`} 
+              className="no-underline text-inherit w-[120px] h-[150px] bg-[#e5dfdb] rounded-[70px_70px_20px_20px] shadow-md relative flex flex-col items-center justify-end pb-[15px] font-sans m-[3px]"
+            >
+              <div className="absolute top-[20px] w-[70px] h-[70px] bg-white rounded-full overflow-hidden flex items-center justify-center">
                 <img 
-                  src={v.image?.imagePath ? `${ICONES_URL}/${v.image.imagePath}` : `${LOGOS_URL}/logoSmallX2.png`} 
-                  alt={v.label || 'Vibe'} 
-                  style={{ width: '80%', height: '80%', objectFit: 'cover' }} 
+                  src={vibe.image?.imagePath ? `${ICONES_URL}/${vibe.image.imagePath}` : `${LOGOS_URL}/logoSmallX2.png`} 
+                  alt={vibe.label || 'Vibe'} 
+                  className="w-[80%] h-[80%] object-cover" 
                 />
               </div>
-              <span style={{
-                color: '#1c1c3c',
-                fontSize: '16px',
-                fontWeight: 'bold',
-                zIndex: 1,
-                textAlign: 'center'
-              }}>
-                {v.label || 'Inconnu'}
+              <span className="text-[#1c1c3c] text-[16px] font-bold z-10 text-center">
+                {vibe.label || 'Inconnu'}
               </span>
-            </div>
-          ))}
+            </Link>
         </div>
-      )}
     </div>
   )
 }
