@@ -12,8 +12,6 @@ const Room = () => {
   useEffect(() => {
     dispatch(fetchRooms());
   }, [dispatch])
-  
-  const { loading, rooms } = useSelector(selectRoomData);
 
   return (
     loading ? <PageLoader /> : (
