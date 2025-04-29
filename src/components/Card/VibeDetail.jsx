@@ -51,42 +51,42 @@ const VibeDetail = () => {
   console.log('devicesGrouped', devicesGrouped);
 
   return loading ? (
-    // Afficher un loader si les données sont en cours de chargement
     <PageLoader />
   ) : (
-    <div className="m-5">
-      {/* Formulaire pour afficher ou modifier les détails de la vibe */}
+    <div className="m-5 mx-auto max-w-[70%]">
       <VibeForm vibe={vibeDetail} />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-10">
+        {Object.values(
+          Object.values(devicesGrouped).reduce((acc, group) => {
+            const roomId = group.device?.room?.id;
+            if (!roomId) return acc;
 
-      {/* Affichage de la liste des appareils */}
-      {Object.values(
-        Object.values(devicesGrouped).reduce((acc, group) => {
-          const roomId = group.device?.room?.id;
-          if (!roomId) return acc;
-
-          if (!acc[roomId]) {
-            acc[roomId] = {
-              roomLabel: group.device?.room?.label,
-              devices: [],
-            };
-          }
-          acc[roomId].devices.push(group);
-          return acc;
-        }, {})
-      ).map((roomGroup) => (
-        <div
-          key={roomGroup.roomLabel}
-          className="border border-gray-300 mb-2 p-3 rounded-lg"
-        >
-          <h3 className="text-lg font-bold">{roomGroup.roomLabel}</h3>
-          {roomGroup.devices.map((group) => (
-            <Device
-              key={group.device.id} // Clé propre avec ID du device
-              groupdevices={group}
-            />
-          ))}
-        </div>
-      ))}
+            if (!acc[roomId]) {
+              acc[roomId] = {
+                roomLabel: group.device?.room?.label,
+                devices: [],
+              };
+            }
+            acc[roomId].devices.push(group);
+            return acc;
+          }, {})
+        ).map((roomGroup) => (
+          <div
+            key={roomGroup.roomLabel}
+            className="border border-orange-primary rounded-2xl p-4 flex flex-col gap-4 h-fit"
+          >
+            <h3 className="text-lg font-bold">{roomGroup.roomLabel}</h3>
+            {roomGroup.devices.map((group) => (
+              <div
+                key={group.device.id}
+                className="border rounded-2xl p-4 font-bold"
+              >
+                <Device groupdevices={group} />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
