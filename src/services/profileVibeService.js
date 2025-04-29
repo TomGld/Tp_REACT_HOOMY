@@ -14,7 +14,6 @@ export const fetchVibeDetail = async (newLabel, vibeId) => {
         axios.defaults.headers.patch["Content-Type"] = "application/merge-patch+json";
         const response = await axios.patch(`${VIBES_URL}/${vibeId}`, dataVibe);
         if (response.status === 200) {
-            console.log('response', response);
         } else {
             console.log('erreur lors du fetchVibeDetail');
         }

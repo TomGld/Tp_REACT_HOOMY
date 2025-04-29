@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { API_URL } from "../../constants/apiConstant";
+import { API_URL, VIBES_URL } from "../../constants/apiConstant";
 
 const vibeSlice = createSlice({
     name: "vibe",
     initialState: {
         loading: false,
         vibes: [],
-        vibeDetail: {}
+        vibeDetail: {},
+        updatedSettingData: null, // Ajout pour gérer les mises à jour des données
+
     },
     reducers: {
         setLoading: (state, action) => {
@@ -19,9 +21,12 @@ const vibeSlice = createSlice({
         setVibeDetail: (state, action) => {
             state.vibeDetail = action.payload;
         },
+        setUpdatedSettingData: (state, action) => {
+            state.updatedSettingData = action.payload;
+        },
     },
 });
-export const { setLoading, setVibes, setVibeDetail } = vibeSlice.actions;
+export const { setLoading, setVibes, setVibeDetail, setUpdatedSettingData } = vibeSlice.actions;
 
 /**
  * Récupération de toutes les vibes
@@ -48,7 +53,7 @@ export const fetchVibe = () => async (dispatch) => {
 export const fetchVibeDetail = (id) => async (dispatch) => {
     try {
         dispatch(setLoading(true));
-        const response = await axios.get(`${API_URL}/vibes/${id}`);
+        const response = await axios.get(`${VIBES_URL}/${id}`);
         dispatch(setVibeDetail(response.data));
     } catch (error) {
         console.error(`Error fetching vibe detail: ${error}`);
@@ -56,5 +61,6 @@ export const fetchVibeDetail = (id) => async (dispatch) => {
         dispatch(setLoading(false));
     }
 }
+
 
 export default vibeSlice.reducer;

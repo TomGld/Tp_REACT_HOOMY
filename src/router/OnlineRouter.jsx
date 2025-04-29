@@ -6,6 +6,7 @@ import Room from "../screens/OnlineScreens/Room";
 import RoomDetail from "../screens/OnlineScreens/RoomDetail";
 import Vibe from "../screens/OnlineScreens/Vibe";
 import VibeDetail from "../components/Card/VibeDetail";
+import Event from "../screens/OnlineScreens/Event";
 import RoomDevice from "../screens/OnlineScreens/RoomDevice";
 import Planning from "../screens/OnlineScreens/Planning";
 
@@ -42,8 +43,7 @@ const OnlineRouter = createBrowserRouter([
             {
                 path: "/events",
                 element: <Planning />
-            }
-           
+            },           
         ]
     }
 ]);

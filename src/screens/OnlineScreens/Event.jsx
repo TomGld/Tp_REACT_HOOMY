@@ -1,7 +1,7 @@
 import React from 'react'
 import { PacmanLoader } from 'react-spinners'
 
-const Playlist = () => {
+const Event = () => {
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', textAlign: 'center' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -13,4 +13,4 @@ const Playlist = () => {
     )
 }
 
-export default Playlist
+export default Event
