@@ -3,8 +3,8 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { useDispatch, useSelector } from 'react-redux';
-import selectVibeData from '../../store/Vibe/vibeSelector';
-import { fetchVibes } from '../../store/Vibe/vibeSlice';
+import selectVibeData from '../../store/vibe/vibeSelector';
+import { fetchVibe } from '../../store/vibe/vibeSlice';
 import { Switch } from '@headlessui/react';
 import selectRoomData from '../../store/room/roomSelector';
 import { fetchRooms } from '../../store/room/roomSlice';
@@ -27,7 +27,7 @@ const Planning = () => {
     const [recurrence, setRecurrence] = useState('');
 
     useEffect(() => {
-        dispatch(fetchVibes());
+        dispatch(fetchVibe());
     }, [dispatch]);
 
     useEffect(() => {

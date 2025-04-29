@@ -5,12 +5,16 @@ import { useDispatch } from 'react-redux';
 import { fetchSettingDataDetail, patchSettingData } from '../../store/settingData/settingDataSlice';
 import { HexColorPicker } from 'react-colorful';
 
+/**
+ * Ce composant affiche les détails d'un appareil et permet de modifier ses paramètres via des sliders, un sélecteur de couleur ou un interrupteur.
+*/
 const Device = ({ settingData, groupdevices }) => {
   const dispatch = useDispatch();
   const [sliderValues, setSliderValues] = useState({});
   const settingDataList = groupdevices?.settingDatas || [];
   const deviceLabel = groupdevices?.device?.label;
 
+  // Initialiser les valeurs des sliders et récupérer les détails des données de configuration
   useEffect(() => {
     const initialSliderValues = {};
     settingDataList.forEach((data) => {
@@ -22,6 +26,7 @@ const Device = ({ settingData, groupdevices }) => {
     setSliderValues(initialSliderValues);
   }, [dispatch, settingDataList]);
 
+  // Gérer le changement de valeur du slider (mise à jour temporaire de l'état)
   const handleSliderChange = (id, newValue) => {
     setSliderValues((prev) => ({
       ...prev,
@@ -29,27 +34,31 @@ const Device = ({ settingData, groupdevices }) => {
     }));
   };
 
+  // Gérer la validation du changement de valeur du slider (dispatch vers le store)
   const handleChangeCommitted = (id, newValue) => {
     dispatch(patchSettingData(id, newValue));
   };
 
-
+  // Convertir les valeurs entières en booléens pour le composant interrupteur
   const intToBoolean = (value) => {
     if (value === 1 || value === "1") return true;
     if (value === 0 || value === "0") return false;
     return null;
   };
 
-  console.log('groupdevicessssss', groupdevices);
-  console.log('settingDataList', settingDataList);
   return (
     <div className="device-container border-b border-gray-300 pb-4 mb-4">
+      {/* En-tête de l'appareil */}
       <div className="device-header flex items-center justify-between">
         <h4 className="text-lg font-semibold">{deviceLabel}</h4>
       </div>
+
+      {/* Détails de l'appareil */}
       <div className="device-details text-sm text-gray-600">
         {settingDataList.map((data) => {
           const dataType = data?.settingType?.dataType?.dataType;
+
+          // Render slider for numeric values
           if (dataType === '°C' || dataType === 'W' || dataType === '%' || dataType === 'dB') {
             return (
               <div key={data?.id} className="setting-data-item">
@@ -69,29 +78,31 @@ const Device = ({ settingData, groupdevices }) => {
               </div>
             );
           }
+
+          // Render color picker for hexadecimal values
           if (dataType === 'hexa') {
             return (
               <div key={data?.id} className="setting-data-item">
-              <p>{data?.settingType?.labelKey} :</p>
-              <div className="device-slider mt-2">
-                <HexColorPicker
-                color={sliderValues[data?.id] || '#000000'}
-                onChange={(newColor) => {
-                  handleSliderChange(data?.id, newColor);
-                  handleChangeCommitted(data?.id, newColor);
-                }}
-                />
-              </div>
+                <p>{data?.settingType?.labelKey} :</p>
+                <div className="device-slider mt-2">
+                  <HexColorPicker
+                    color={sliderValues[data?.id] || '#000000'}
+                    onChange={(newColor) => {
+                      handleSliderChange(data?.id, newColor);
+                      handleChangeCommitted(data?.id, newColor);
+                    }}
+                  />
+                </div>
               </div>
             );
           }
-          //Filtre switch
+
+          // Render switch for On/Off values
           if (dataType === 'On/Off') {
             return (
               <div key={data?.id} className="setting-data-item">
                 <p>{data?.settingType?.labelKey} :</p>
                 <div className="device-slider mt-2">
-                  {console.log('switch 1', data)}
                   {(() => {
                     const rawValue = sliderValues[data?.id] !== undefined ? sliderValues[data?.id] : Number(data?.data);
                     const checked = intToBoolean(rawValue) ?? false;
@@ -117,16 +128,17 @@ const Device = ({ settingData, groupdevices }) => {
                       />
                     );
                   })()}
-                  {console.log('switch', (data?.data) === 1)}
                 </div>
               </div>
             );
           }
+
+          return null; // 
         })}
-        {/* TODO: Ajouter pour mettre les valeurs à 0 pour configurer. */}
       </div>
     </div>
   );
+
 };
 
 export default Device;
