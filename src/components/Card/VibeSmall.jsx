@@ -1,4 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchVibe } from '../../store/Vibe/vibeSlice';
+import selectVibeData from '../../store/Vibe/vibeSelector';
+import PageLoader from '../Loader/PageLoader';
+
 import { ICONES_URL, LOGOS_URL } from '../../constants/apiConstant';
 import { Link } from 'react-router-dom';
 

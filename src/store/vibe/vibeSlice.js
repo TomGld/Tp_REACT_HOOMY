@@ -33,7 +33,7 @@ export const { setLoading, setVibes, setVibeDetail, setUpdatedSettingData } = vi
  * @param {function} dispatch - Fonction de dispatch
  * @returns 
  */
-export const fetchVibes = () => async (dispatch) => {
+export const fetchVibe = () => async (dispatch) => {
     try {
         dispatch(setLoading(true));
         const response = await axios.get(`${API_URL}/vibes?page=1`);

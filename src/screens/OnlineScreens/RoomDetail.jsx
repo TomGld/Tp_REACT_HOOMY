@@ -36,7 +36,7 @@ const RoomDetail = () => {
         {/* Add Device Button */}
         <div className="flex justify-center mb-6">
           <Link
-            to="#"
+            to={`/rooms/${id}/add-device`}
             className="bg-purple hover:bg-orange-primary transition duration-300 px-6 py-3 rounded-full flex items-center gap-2 text-white-primary font-medium shadow-md"
           >
             <BiPlus size={20} />

@@ -31,6 +31,25 @@ body {
   animation: fadeIn 0.6s ease-in-out;
 }
 
+/* calendar.css */
+.react-calendar {
+  border: none;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 0.75rem;
+}
+
+.react-calendar__tile--active {
+  background: #7E5BEF !important; /* your purple */
+  color: white !important;
+  border-radius: 0.5rem;
+}
+
+.react-calendar__tile:enabled:hover {
+  background-color: #EDE9FE; /* lighter purple */
+  border-radius: 0.5rem;
+}
+
 .device-container {
   padding: 1rem;
   background-color: #fff;
