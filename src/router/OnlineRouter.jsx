@@ -48,7 +48,6 @@ const OnlineRouter = createBrowserRouter([
                 path: "/playlists",
                 element: <Playlist />
             }
-           
         ]
     }
 ]);

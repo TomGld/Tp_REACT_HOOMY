@@ -43,3 +43,11 @@ Installer calendar
 Installer date en français
 - npm install date-fns
 
+Installer le slider (mui/material) :
+- npm install @mui/material @emotion/react @emotion/styled
+
+Installer le gestionnaire de couleurs :
+- npm install react-colorful
+
+Installer la librairy pour le button :
+- npm install react-switch
