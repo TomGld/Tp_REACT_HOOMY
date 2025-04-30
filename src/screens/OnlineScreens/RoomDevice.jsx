@@ -13,6 +13,7 @@ import selectRoomData from '../../store/room/roomSelector';
 import ButtonBack from '../../components/Ui/ButtonBack';
 import ButtonSave from '../../components/Ui/ButtonSave';
 
+
 const RoomDevice = () => {
     const dispatch = useDispatch();
     const { devices, loading } = useSelector(selectDeviceData);
@@ -22,8 +23,8 @@ const RoomDevice = () => {
     const [selectedLabel, setSelectedLabel] = useState('');
     const { id } = useParams();
     const [roomId] = useState(id);
-    const [connectedDevices, setConnectedDevices] = useState([]);
-    
+
+    const roomDevices = roomDetails?.devices || [];
     const roomlabel = roomDetails?.label || [];
 
     useEffect(() => {
@@ -33,18 +34,10 @@ const RoomDevice = () => {
     useEffect(() => {
         dispatch(fetchRoomDetails(roomId))
     }, [dispatch, roomId]);
-    
-    
 
-    useEffect(() => {
-        if (devices.length > 0) {
-            const alreadyConnected = devices.filter(device => device.room?.id?.toString() === roomId);
-            setConnectedDevices(alreadyConnected);
-        }
-    }, [devices, roomId]);
 
     const filteredDevices = devices.filter(
-        device => device.type === selectedType && (!device.room || device.room?.id?.toString() !== roomId)
+        device => device.type === selectedType && !device.room
     );
 
     const handleSubmit = async () => {
@@ -59,7 +52,7 @@ const RoomDevice = () => {
             }
 
             const data = {
-                room: `${ROOMS_URL}/${roomId}`,
+                room: `/api/rooms/${roomId}`,
             };
 
             const headers = {
@@ -70,6 +63,7 @@ const RoomDevice = () => {
             axios.defaults.headers.patch['Content-Type'] = 'application/merge-patch+json';
 
             const response = await axios.patch(`${DEVICES_URL}/${selectedDevice.id}`, data);
+            console.log("Réponse du serveur :", response);
 
             if (response.status === 200) {
                 console.log("Objet ajouté avec succès !");
@@ -83,6 +77,38 @@ const RoomDevice = () => {
         }
     };
 
+    const handleDelete = async (deviceId) => {
+        try {
+            setIsLoading(true);
+            console.log("ID de l'objet à supprimer :", deviceId);
+
+            const data = {
+                room: null,
+            };
+
+            const headers = {
+                'Content-Type': 'application/merge-patch+json',
+                Accept: 'application/json',
+            };
+
+            axios.defaults.headers.patch['Content-Type'] = 'application/merge-patch+json';
+
+            const response = await axios.patch(`${DEVICES_URL}/${deviceId}`, data);
+            console.log("Réponse du serveur :", response);
+
+            if (response.status === 200) {
+                console.log("Objet ajouté avec succès !");
+                await dispatch(fetchDevices());
+            }
+
+            console.log("Réponse du serveur :", response.data);
+        } catch (error) {
+            console.log(`Erreur lors de la soumission : ${error}`);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
     return (
         loading ? <PageLoader /> : (
             <div className="min-h-screen bg-white-primary py-10 px-4">
@@ -93,15 +119,16 @@ const RoomDevice = () => {
                         <span className="text-lg font-semibold text-gray-700">
                             {roomlabel}
                         </span>
-                        <ButtonSave 
-                            handleSubmit={handleSubmit}
+                        <ButtonSave
+                            handleSubmit={() => handleSubmit()}
                             isLoading={isLoading}
-                            selectedType={!selectedType || !selectedLabel}
+                            selectedType={selectedType}
+                            selectedLabel={selectedLabel}
                         />
                     </div>
 
                     <h2 className="text-xl font-semibold text-gray-700">
-                        Quel objet souhaitez-vous renseigner ?
+                        Quel objet souhaitez-vous ajouter ?
                     </h2>
 
                     {/* Select Type */}
@@ -141,15 +168,18 @@ const RoomDevice = () => {
                     </select>
 
                     {/* Connected Devices */}
-                    {connectedDevices.length > 0 && (
-                        <div className="mt-8">
-                            <h3 className="text-md font-semibold text-gray-700 mb-2">
-                                Objets déjà connectés à cette pièce :
-                            </h3>
-                            {isLoading
-                                ? <ButtonLoader />
-                                : <Device dataDevices={connectedDevices} />
-                            }
+                    {isLoading ? (
+                        <ButtonLoader />
+                    ) : (
+                        <div>
+                            {roomDevices.length > 0 ? (
+                                    <Device
+                                        dataDevices={roomDevices} // send ONE device here, not the full roomDevices array
+                                        onClick={handleDelete}
+                                    />
+                            ) : (
+                                <p className="text-gray-500 text-sm">Aucun objet connecté à cette pièce.</p>
+                            )}
                         </div>
                     )}
                 </div>
