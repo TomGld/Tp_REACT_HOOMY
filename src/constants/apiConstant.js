@@ -31,3 +31,5 @@ export const SETTINGTYPES_URL = `${API_URL}/setting_types`;
 export const STANDARDS_URL = `${API_URL}/standards`;
 //url pour les standards
 export const VIBES_URL = `${API_URL}/vibes`;
+//url pour le frontend 
+export const FRONTEND_URL = 'http://localhost:5173';

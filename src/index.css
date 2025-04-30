@@ -49,3 +49,22 @@ body {
   background-color: #EDE9FE; /* lighter purple */
   border-radius: 0.5rem;
 }
+
+.device-container {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.device-header h4 {
+  color: #333;
+}
+
+.device-details p {
+  margin: 0.5rem 0;
+}
+
+.device-slider {
+  margin-top: 1rem;
+}

@@ -8,6 +8,7 @@ import Vibe from "../screens/OnlineScreens/Vibe";
 import VibeDetail from "../components/Card/VibeDetail";
 import RoomDevice from "../screens/OnlineScreens/RoomDevice";
 import Planning from "../screens/OnlineScreens/Planning";
+import Playlist from "../screens/OnlineScreens/Playlist";
 
 
 const OnlineRouter = createBrowserRouter([
@@ -42,8 +43,11 @@ const OnlineRouter = createBrowserRouter([
             {
                 path: "/events",
                 element: <Planning />
+            },
+            {
+                path: "/playlists",
+                element: <Playlist />
             }
-           
         ]
     }
 ]);
