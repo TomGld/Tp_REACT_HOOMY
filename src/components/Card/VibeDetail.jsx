@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import selectVibeData from '../../store/Vibe/vibeSelector';
-import { fetchVibeDetail } from '../../store/Vibe/vibeSlice';
+import selectVibeData from '../../store/vibe/vibeSelector';
+import { fetchVibeDetail } from '../../store/vibe/vibeSlice';
 import VibeSmall from './VibeSmall';
 import { Link, useParams } from 'react-router-dom';
 import PageLoader from '../Loader/PageLoader';
