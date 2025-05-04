@@ -10,9 +10,6 @@ const Device = ({ device, settingDatas, vibeId }) => {
   const settingTypes = device?.settingTypes;
   const [sliderValues, setSliderValues] = useState({});
 
-  console.log('device', device);
-  console.log('settingData', settingDatas);
-
   // Initialiser les valeurs des sliders et récupérer les détails des données de configuration
   useEffect(() => {
     const initialSliderValues = {};
@@ -66,15 +63,22 @@ const Device = ({ device, settingDatas, vibeId }) => {
 
   // Gérer la validation du changement de valeur du slider (dispatch vers le store)
   const handleChangeCommitted = (id, newValue) => {
-    console.log('handleChangeCommitted - id:', id, 'type:', typeof id);
 
     if (typeof id !== 'string') {
       id = String(id); // Convertir en chaîne si nécessaire
     }
 
     if (id.startsWith('temp-')) {
-      const settingTypeId = id.split('-')[1];
-      dispatch(postSettingData(device.id, settingTypeId, newValue));
+      // Extraire uniquement la partie numérique après "temp-"
+      const settingTypeId = id.split('-')[1]; // Récupère id dans "temp-id"
+
+      if (!settingTypeId) {
+        console.error('Invalid temp ID format:', id);
+        return;
+      }
+
+      // Appeler postSettingData avec les valeurs attendues
+      dispatch(postSettingData(device.id, settingTypeId, newValue, vibeId));
     } else {
       dispatch(patchSettingData(id, newValue));
     }

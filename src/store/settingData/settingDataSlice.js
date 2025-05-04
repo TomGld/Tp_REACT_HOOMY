@@ -84,14 +84,16 @@ export const postSettingData = (deviceId, settingTypeId, value, vibeId) => async
         dispatch(setLoading(true));
         console.log(`postSettingData: Envoi d'une requête POST pour deviceId=${deviceId}, settingTypeId=${settingTypeId}, vibeId=${vibeId}, value=${value}`);
 
-        const response = await axios.post(`${SETTINGDATAS_URL}`, {
-            device: `/api/devices/${deviceId}`,
-            settingTypeId: `/api/setting_types/${settingTypeId}`,
-            vibeId: `/api/vibes/${vibeId}`,
-            data: value,
-        });
+        const newSettingData = {
+            settingType: `/api/setting_types/${settingTypeId}`, // Convertir en IRI
+            vibe: `/api/vibes/${vibeId}`, // Convertir en IRI
+            device: `/api/devices/${deviceId}`, // Convertir en IRI
+            data: `${value}`,
+        };
 
-        console.log("postSettingData: Réponse reçue", response.data);
+        axios.defaults.headers.post["Content-Type"] = "application/ld+json";
+        const response = await axios.post(`${SETTINGDATAS_URL}`, newSettingData);
+
         dispatch(addSettingData(response.data)); // Ajouter la donnée créée au store
     } catch (error) {
         console.error(`postSettingData: Erreur lors de la requête POST - ${error.message}`);
