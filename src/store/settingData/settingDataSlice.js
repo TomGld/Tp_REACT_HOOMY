@@ -26,9 +26,12 @@ const settingDataSlice = createSlice({
                 settingData.data = data;
             }
         },
+        addSettingData: (state, action) => {
+            state.settingDatas.push(action.payload); // Ajouter le nouveau paramètre au tableau
+        },
     },
 });
-export const { setLoading, setSettingDatas, setSettingDataDetail, updateSettingData } = settingDataSlice.actions;
+export const { setLoading, setSettingDatas, setSettingDataDetail, updateSettingData, addSettingData } = settingDataSlice.actions;
 
 /**
  * Récupération des détails d'une vibe
@@ -58,6 +61,40 @@ export const patchSettingData = (id, data) => async (dispatch) => {
         dispatch(updateSettingData({ id, data }));
     } catch (error) {
         console.error(`Error updating settingData: ${error}`);
+    } finally {
+        dispatch(setLoading(false));
+    }
+};
+
+
+/**
+ * Action pour effectuer un POST et créer un nouveau paramètre de configuration
+ * @param {number} deviceId - ID du device
+ * @param {number} settingTypeId - ID du type de paramètre
+ * @param {number} vibeId - ID de la vibe
+ * @param {any} value - Valeur par défaut du paramètre
+ */
+export const postSettingData = (deviceId, settingTypeId, value, vibeId) => async (dispatch) => {
+    if (!deviceId || !settingTypeId || !vibeId) {
+        console.error("postSettingData: deviceId, settingTypeId ou vibeId manquant.");
+        return;
+    }
+
+    try {
+        dispatch(setLoading(true));
+        console.log(`postSettingData: Envoi d'une requête POST pour deviceId=${deviceId}, settingTypeId=${settingTypeId}, vibeId=${vibeId}, value=${value}`);
+
+        const response = await axios.post(`${SETTINGDATAS_URL}`, {
+            device: `/api/devices/${deviceId}`,
+            settingTypeId: `/api/setting_types/${settingTypeId}`,
+            vibeId: `/api/vibes/${vibeId}`,
+            data: value,
+        });
+
+        console.log("postSettingData: Réponse reçue", response.data);
+        dispatch(addSettingData(response.data)); // Ajouter la donnée créée au store
+    } catch (error) {
+        console.error(`postSettingData: Erreur lors de la requête POST - ${error.message}`);
     } finally {
         dispatch(setLoading(false));
     }

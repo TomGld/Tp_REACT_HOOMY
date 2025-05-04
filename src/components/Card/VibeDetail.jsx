@@ -25,8 +25,8 @@ const VibeDetail = () => {
     dispatch(fetchRooms());
   }, [dispatch, id]);
 
-  console.log('vibeDetail', vibeDetail);
-  console.log('Rooms', rooms);
+  // console.log('vibeDetail', vibeDetail);
+  // console.log('Rooms', rooms);
 
   // Filtrer les settingData pour chaque device
   const filterSettingDataByDeviceId = (deviceId) => {
@@ -49,7 +49,7 @@ const VibeDetail = () => {
                 
                 return (
                   <div key={device.id}>
-                    <Device device={device} settingDatas={filteredSettings} /> {/* Réintégration de Device */}
+                    <Device device={device} settingDatas={filteredSettings} vibeId={vibeDetail.id} /> {/* Réintégration de Device */}
                   </div>
                 );
               })}
