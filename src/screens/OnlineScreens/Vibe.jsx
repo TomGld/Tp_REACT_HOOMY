@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchVibe } from '../../store/vibe/vibeSlice';
 import selectVibeData from '../../store/vibe/vibeSelector';
 
-
 const Vibe = () => {
     const dispatch = useDispatch();
 
