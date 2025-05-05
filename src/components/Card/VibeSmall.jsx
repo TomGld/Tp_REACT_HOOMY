@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom';
 import { ICONES_URL, LOGOS_URL, ROOMS_URL, VIBES_URL } from '../../constants/apiConstant';
 import { useSelector } from 'react-redux';
-import selectVibeData from '../../store/Vibe/vibeSelector';
+import selectVibeData from '../../store/vibe/vibeSelector';
 import axios from 'axios';
 
 

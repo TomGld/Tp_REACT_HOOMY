@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaRegCircle } from 'react-icons/fa';
 import { ICONES_URL } from '../../constants/apiConstant';
 
 const Home = () => {
@@ -37,18 +38,19 @@ const Home = () => {
   let dashOffset = 0;
 
   return (
-    <div className="bg-white-primary min-h-screen p-5">
-      <h1 className="font-extrabold text-4xl">Hello, {profile.name}</h1>
-
-      <div className="flex justify-between items-start mt-5 flex-wrap gap-5">
+    <div className="bg-white-primary min-h-screen flex flex-col">
+      {/* Contenu principal */}
+      <div className="flex items-start mt-5 flex-wrap gap-5">
         {/* Mood Card */}
-        <div className="bg-purple text-white-primary rounded-xl w-[370px] h-[200px] p-5 flex justify-between items-center">
+        <div className="bg-purple text-white-primary rounded-xl w-[370px] h-[200px] p-5 flex items-center">
           <div
             onClick={() => setShowMoodPanel(!showMoodPanel)}
             className="cursor-pointer flex flex-col justify-center"
           >
             <p>Votre mood actuel :</p>
-            <p className="text-3xl font-bold mt-8 ml-2">GOOD <br />MOOD</p>
+            <p className="text-3xl font-bold mt-8 ml-2">GOOD
+              MOOD
+            </p>
           </div>
 
           {/* Donut chart */}
@@ -83,29 +85,6 @@ const Home = () => {
             })}
           </svg>
         </div>
-
-        {/* Shortcuts */}
-        <div className="flex flex-wrap gap-5">
-          {[
-            { label: 'Playlists', icon: 'MusicX2.png', href: '/playlists' },
-            { label: 'Pièces', icon: 'BedX2.png', href: '/rooms' },
-            { label: 'Planning', icon: 'CalendarX2.png', href: '/events' },
-            { label: 'Ambiances', icon: 'LightX2.png', href: '/vibes' },
-          ].map(({ label, icon, href }) => (
-            <div
-              key={label}
-              className="bg-purple text-white w-[125px] h-[125px] rounded-xl p-2 flex flex-col justify-between relative cursor-pointer"
-              onClick={() => window.location.href = href}
-            >
-              <img
-                src={`${ICONES_URL}/${icon}`}
-                alt={`Logo ${label}`}
-                className="absolute top-2 left-2 h-10"
-              />
-              <span className="mt-auto ml-2">{label}</span>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Mood Panel */}
@@ -136,6 +115,63 @@ const Home = () => {
           ))}
         </div>
       )}
+
+      {/* Section des raccourcis */}
+      <div className="bg-purple rounded-t-3xl pb-20 pt-8 flex flex-col items-center mt-auto">
+        <div className="flex flex-wrap gap-5 justify-center">
+          {/* carré playlists */}
+          <div
+            className="bg-white rounded-xl w-[110px] h-[110px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] p-2 flex flex-col items-start justify-between text-black relative cursor-pointer"
+            onClick={() => (window.location.href = '/playlists')}
+          >
+            <img
+              src={`${ICONES_URL}/MusicX2.png`}
+              alt="Logo playlist"
+              className="h-10 absolute top-2 left-2"
+            />
+            <span className="mt-auto ml-2">Playlists</span>
+          </div>
+
+          {/* carré pièces */}
+          <div
+            className="bg-white rounded-xl w-[110px] h-[110px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] p-2 flex flex-col items-start justify-between text-black relative cursor-pointer"
+            onClick={() => (window.location.href = '/rooms')}
+          >
+            <img
+              src={`${ICONES_URL}/BedX2.png`}
+              alt="Logo pièces"
+              className="h-8 absolute top-2 left-2"
+            />
+            <span className="mt-auto ml-2">Pièces</span>
+          </div>
+
+          {/* carré planning */}
+          <div
+            className="bg-white rounded-xl w-[110px] h-[110px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] p-2 flex flex-col items-start justify-between text-black relative cursor-pointer"
+            onClick={() => (window.location.href = '/events')}
+          >
+            <img
+              src={`${ICONES_URL}/CalendarX2.png`}
+              alt="Logo planning"
+              className="h-9 absolute top-2 left-2"
+            />
+            <span className="mt-auto ml-2">Planning</span>
+          </div>
+
+          {/* carré Ambiances */}
+          <div
+            className="bg-white rounded-xl w-[110px] h-[110px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] p-2 flex flex-col items-start justify-between text-black relative cursor-pointer"
+            onClick={() => (window.location.href = '/vibes')}
+          >
+            <img
+              src={`${ICONES_URL}/LightX2.png`}
+              alt="Logo ambiances"
+              className="h-9 absolute top-2 left-2"
+            />
+            <span className="mt-auto ml-2">Ambiances</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

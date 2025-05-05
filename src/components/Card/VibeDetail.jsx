@@ -61,34 +61,27 @@ const VibeDetail = () => {
   return loading ? (
     <PageLoader />
   ) : (
-    <div className="m-5 mx-auto max-w-[70%]">
+    <div className="m-5 mx-auto max-w-[70%] bg-white shadow-md rounded-lg p-6">
       <VibeForm vibe={vibeDetail} />
       <div className="pt-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {rooms.map((room) => (
-            <div
-              key={room.id}
-              className="p-5 border border-gray-300 rounded-lg shadow-md bg-white"
-            >
-              <h3 className="text-lg font-bold text-gray-700 mb-4">{room.label}</h3>
-              <div className="space-y-4">
-                {room?.devices?.map((device) => {
-                  const filteredSettings = filterSettingDataByDeviceId(device.id);
+            <div key={room.id} className="bg-gray-100 p-4 rounded-lg shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">{room.label}</h3>
+              {room?.devices?.map((device) => {
+                const filteredSettings = filterSettingDataByDeviceId(device.id);
+                console.log('filteredSettings', filteredSettings);
 
-                  return (
-                    <div
-                      key={device.id}
-                      className="p-4 border border-gray-200 rounded-md bg-gray-50"
-                    >
-                      <Device
-                        device={device}
-                        settingDatas={filteredSettings}
-                        vibeId={vibeDetail.id}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
+                return (
+                  <div key={device.id} className="mb-6">
+                    <Device
+                      device={device}
+                      settingDatas={filteredSettings}
+                      vibeId={vibeDetail.id}
+                    />
+                  </div>
+                );
+              })}
             </div>
           ))}
         </div>

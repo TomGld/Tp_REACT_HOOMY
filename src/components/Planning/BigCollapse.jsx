@@ -1,10 +1,10 @@
 import { Switch } from '@headlessui/react';
 import React, { useEffect, useState } from 'react'
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
-import selectVibeData from '../../store/Vibe/vibeSelector';
+import selectVibeData from '../../store/vibe/vibeSelector';
 import selectRoomData from '../../store/room/roomSelector';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchVibe } from '../../store/Vibe/vibeSlice';
+import { fetchVibe } from '../../store/vibe/vibeSlice';
 import { fetchRooms } from '../../store/room/roomSlice';
 
 const BigCollapse = (selectedDate) => {
