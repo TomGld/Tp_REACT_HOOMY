@@ -1,161 +1,143 @@
-import React, { useState } from 'react'
-import { FaRegCircle } from 'react-icons/fa';
+import React, { useState } from 'react';
 import { ICONES_URL } from '../../constants/apiConstant';
 
 const Home = () => {
-
   const profile = JSON.parse(localStorage.getItem('profileInfos'));
 
+  const [showMoodPanel, setShowMoodPanel] = useState(false);
+  const [standards, setStandards] = useState({
+    energy: 50,
+    security: 50,
+    emotion: 50,
+    consciousness: 50,
+  });
+
+  const COLORS = {
+    energy: '#f87171',        // red-400
+    security: '#60a5fa',      // blue-400
+    emotion: '#fbbf24',       // yellow-400
+    consciousness: '#34d399'  // green-400
+  };
+
+  const RADIUS = 40;
+  const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+
+  const total = Object.values(standards).reduce((a, b) => a + b, 0) || 1;
+
+  // Calculate relative segments
+  const circleSegments = Object.entries(standards).map(([key, value]) => {
+    const percentage = value / total;
+    return {
+      key,
+      color: COLORS[key],
+      length: percentage * CIRCUMFERENCE
+    };
+  });
+
+  let dashOffset = 0;
+
   return (
-    <div style={{ backgroundColor: 'var(--color-white-primary)', minHeight: '100vh', padding: '20px' }}>
+    <div className="bg-white-primary min-h-screen p-5">
+      <h1 className="font-extrabold text-4xl">Hello, {profile.name}</h1>
 
-      <h1 style={{ fontWeight: 800, fontSize: 40 }}>Hello, {profile.name}</h1>
-
-      {/* Conteneur flex pour mood analyse et raccourcis */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-        marginTop: '20px',
-      }}>
-        {/* mood analyse */}
-        <div style={{
-          backgroundColor: 'var(--color-purple)',
-          borderRadius: '15px',
-          width: '370px',
-          height: '200px',
-          padding: '20px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}>
-          {/* div texte */}
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <p className='text-white-primary'>Votre mood actuel :</p>
-            <p className='text-white-primary text-3xl font-bold mt-8 ml-2'>GOOD <br />MOOD</p>
+      <div className="flex justify-between items-start mt-5 flex-wrap gap-5">
+        {/* Mood Card */}
+        <div className="bg-purple text-white-primary rounded-xl w-[370px] h-[200px] p-5 flex justify-between items-center">
+          <div
+            onClick={() => setShowMoodPanel(!showMoodPanel)}
+            className="cursor-pointer flex flex-col justify-center"
+          >
+            <p>Votre mood actuel :</p>
+            <p className="text-3xl font-bold mt-8 ml-2">GOOD <br />MOOD</p>
           </div>
 
-          {/* div cercle */}
-          <div>
-            <FaRegCircle
-              size={100} // Adjusted size
-              color='white'
+          {/* Donut chart */}
+          <svg width="100" height="100">
+            <circle
+              cx="50"
+              cy="50"
+              r={RADIUS}
+              stroke="white"
+              strokeWidth="10"
+              fill="none"
+              opacity="0.1"
             />
-          </div>
+            {circleSegments.map((segment) => {
+              const dasharray = `${segment.length} ${CIRCUMFERENCE - segment.length}`;
+              const circle = (
+                <circle
+                  key={segment.key}
+                  cx="50"
+                  cy="50"
+                  r={RADIUS}
+                  stroke={segment.color}
+                  strokeWidth="10"
+                  fill="none"
+                  strokeDasharray={dasharray}
+                  strokeDashoffset={-dashOffset}
+                  transform="rotate(-90 50 50)"
+                />
+              );
+              dashOffset += segment.length;
+              return circle;
+            })}
+          </svg>
         </div>
 
-        {/* Raccourcis */}
-        <div style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '20px',
-          marginLeft: '20px',
-        }}>
-          {/* carré playlists */}
+        {/* Shortcuts */}
+        <div className="flex flex-wrap gap-5">
+          {[
+            { label: 'Playlists', icon: 'MusicX2.png', href: '/playlists' },
+            { label: 'Pièces', icon: 'BedX2.png', href: '/rooms' },
+            { label: 'Planning', icon: 'CalendarX2.png', href: '/events' },
+            { label: 'Ambiances', icon: 'LightX2.png', href: '/vibes' },
+          ].map(({ label, icon, href }) => (
             <div
-            style={{
-              backgroundColor: 'var(--color-purple)',
-              borderRadius: '15px',
-              width: '125px',
-              height: '125px',
-              padding: '10px',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              justifyContent: 'space-between',
-              color: 'white',
-              position: 'relative',
-              cursor: 'pointer', // Added pointer cursor
-            }}
-            onClick={() => window.location.href = '/playlists'}
+              key={label}
+              className="bg-purple text-white w-[125px] h-[125px] rounded-xl p-2 flex flex-col justify-between relative cursor-pointer"
+              onClick={() => window.location.href = href}
             >
               <img
-                src={`${ICONES_URL}/MusicX2.png`}
-                alt="Logo playlist"
-                style={{ height: '40px', position: 'absolute', top: '10px', left: '10px' }}
+                src={`${ICONES_URL}/${icon}`}
+                alt={`Logo ${label}`}
+                className="absolute top-2 left-2 h-10"
               />
-              <span style={{ marginTop: 'auto', marginLeft: '10px' }}>Playlists</span>
+              <span className="mt-auto ml-2">{label}</span>
             </div>
-
-          {/* carré pièces */}
-          <div style={{
-            backgroundColor: 'var(--color-purple)',
-            borderRadius: '15px',
-            width: '125px',
-            height: '125px',
-            padding: '10px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            justifyContent: 'space-between',
-            color: 'white',
-            position: 'relative',
-            cursor: 'pointer', // Added pointer cursor
-          }}
-            onClick={() => window.location.href = '/rooms'}
-          >
-            <img
-              src={`${ICONES_URL}/BedX2.png`}
-              alt="Logo playlist"
-              style={{ height: '30px', position: 'absolute', top: '10px', left: '10px' }}
-            />
-            <span style={{ marginTop: 'auto', marginLeft: '10px' }}>Pièces</span>
-          </div>
-
-          {/* carré planning */}
-          <div style={{
-            backgroundColor: 'var(--color-purple)',
-            borderRadius: '15px',
-            width: '125px',
-            height: '125px',
-            padding: '10px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            justifyContent: 'space-between',
-            color: 'white',
-            position: 'relative',
-            cursor: 'pointer', // Added pointer cursor
-          }}
-            onClick={() => window.location.href = '/events'}
-          >
-            <img
-              src={`${ICONES_URL}/CalendarX2.png`}
-              alt="Logo playlist"
-              style={{ height: '35px', position: 'absolute', top: '10px', left: '10px' }}
-            />
-            <span style={{ marginTop: 'auto', marginLeft: '10px' }}>Planning</span>
-          </div>
-
-          {/* carré Ambiances */}
-          <div style={{
-            backgroundColor: 'var(--color-purple)',
-            borderRadius: '15px',
-            width: '125px',
-            height: '125px',
-            padding: '10px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            justifyContent: 'space-between',
-            color: 'white',
-            position: 'relative',
-            cursor: 'pointer', // Added pointer cursor
-          }}
-            onClick={() => window.location.href = '/vibes'}
-          >
-            <img
-              src={`${ICONES_URL}/LightX2.png`}
-              alt="Logo playlist"
-              style={{ height: '35px', position: 'absolute', top: '10px', left: '10px' }}
-            />
-            <span style={{ marginTop: 'auto', marginLeft: '10px' }}>Ambiances</span>
-          </div>
+          ))}
         </div>
       </div>
+
+      {/* Mood Panel */}
+      {showMoodPanel && (
+        <div className="mt-6 bg-gray-100 p-5 rounded-xl w-full max-w-xl">
+          {Object.keys(standards).map((key) => (
+            <div key={key} className="mb-4">
+              <label className="block font-semibold mb-1 capitalize">
+                {key}:{' '}
+                <span style={{ color: COLORS[key] }}>
+                  {standards[key]}
+                </span>
+              </label>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={standards[key]}
+                onChange={(e) =>
+                  setStandards({ ...standards, [key]: parseInt(e.target.value) })
+                }
+                className="w-full"
+                style={{
+                  accentColor: COLORS[key],
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
-  )
+  );
+};
 
-}
-
-export default Home
+export default Home;

@@ -25,6 +25,31 @@ const VibeDetail = () => {
     dispatch(fetchRooms());
   }, [dispatch, id]);
 
+  // Regrouper les appareils par pièce
+  const rooms = vibeDetail?.rooms || [];
+  const settingData = vibeDetail?.settingData || [];
+
+  const devicesByRoom = rooms.reduce((acc, room) => {
+    acc[room.label] = settingData.filter(
+      (data) => data.device?.room?.label === room.label
+    );
+    return acc;
+  }, {});
+
+  // Nouveau regroupement par Device ID
+  const devicesGrouped = settingData.reduce((acc, data) => {
+    const deviceId = data.device?.id;
+    if (!deviceId) return acc;
+    if (!acc[deviceId]) {
+      acc[deviceId] = {
+        device: data.device,
+        settingDatas: [],
+      };
+    }
+    acc[deviceId].settingDatas.push(data);
+    return acc;
+  }, {});
+  
   // console.log('vibeDetail', vibeDetail);
   // console.log('Rooms', rooms);
 

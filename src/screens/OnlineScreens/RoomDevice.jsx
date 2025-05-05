@@ -67,6 +67,8 @@ const RoomDevice = () => {
 
             if (response.status === 200) {
                 console.log("Objet ajouté avec succès !");
+                await dispatch(fetchDevices());
+                await dispatch(fetchRoomDetails(roomId));
             }
 
             console.log("Réponse du serveur :", response.data);
@@ -99,6 +101,8 @@ const RoomDevice = () => {
             if (response.status === 200) {
                 console.log("Objet ajouté avec succès !");
                 await dispatch(fetchDevices());
+                await dispatch(fetchRoomDetails(roomId));
+
             }
 
             console.log("Réponse du serveur :", response.data);
