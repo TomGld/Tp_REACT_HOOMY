@@ -21,7 +21,7 @@ const BigCollapse = (selectedDate) => {
   const [recurrence, setRecurrence] = useState('');
   const dispatch = useDispatch();
   const selectedDateValue = selectedDate.selectedDate
-  console.log("selectedDateValue", selectedDateValue);
+  
   useEffect(() => {
     dispatch(fetchVibe());
 }, [dispatch]);

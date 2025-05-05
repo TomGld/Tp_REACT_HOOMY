@@ -6,6 +6,7 @@ const Device = ({ dataDevices, onClick }) => {
     const { id } = useParams();
     const location = useLocation();
     const showDelete = location.pathname === `/rooms/${id}/add-device`;
+    console.log(dataDevices);
     return (
         <div className="max-w-3xl mx-auto mb-8">
             {Array.isArray(dataDevices) && dataDevices.length > 0 ? (

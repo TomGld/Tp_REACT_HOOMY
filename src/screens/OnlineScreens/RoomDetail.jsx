@@ -15,6 +15,7 @@ const RoomDetail = () => {
   const { roomDetails, loading } = useSelector(selectRoomData);
 
   const roomDevices = roomDetails?.devices || [];
+  console.log(roomDevices);
   const roomVibes = roomDetails?.vibe || [];
 
   useEffect(() => {

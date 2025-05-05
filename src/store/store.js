@@ -5,7 +5,7 @@ import roomsReducer from './room/roomSlice';
 import vibesReducer from './vibe/vibeSlice';
 import settingDataReducer from './settingData/settingDataSlice';
 import devicesReducer from './device/deviceSlice';
-
+import playlistReducer from './playlist/playlistSlice';
 
 const store = configureStore({
     reducer: {
@@ -14,6 +14,7 @@ const store = configureStore({
         vibe: vibesReducer,
         settingdata: settingDataReducer,
         devices: devicesReducer,
+        playlist: playlistReducer,
     }
 });
 

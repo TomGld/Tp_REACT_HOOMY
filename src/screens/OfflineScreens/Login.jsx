@@ -35,7 +35,6 @@ const Login = () => {
 
     try {
       const response = await axios.get(`${API_URL}/profiles/${selectedProfile.id}`)
-      console.log("response", response);
 
       if (!response.data) {
         setErrorMessage('Code PIN incorrect');
