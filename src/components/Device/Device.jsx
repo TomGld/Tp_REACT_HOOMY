@@ -92,8 +92,8 @@ const Device = ({ device, settingDatas, vibeId }) => {
   };
 
   return (
-    <>
-      <p>{device.label}</p>
+    <div className="device-container">
+      <p className="text-lg font-medium text-gray-700 mb-4">{device.label}</p>
 
       {settingTypes?.map((settingType) => {
         const settingData = settingDatas?.find((data) => data.settingType.id === settingType.id);
@@ -101,11 +101,10 @@ const Device = ({ device, settingDatas, vibeId }) => {
         const id = settingData?.id || `temp-${settingType.id}`;
         const value = sliderValues[id] || getDefaultValue(dataType);
 
-        // Render slider for numeric values
         if (dataType === '°C' || dataType === 'W' || dataType === '%' || dataType === 'dB') {
           return (
-            <div key={id} className="setting-data-item">
-              <p>{settingType?.labelKey} :</p>
+            <div key={id} className="setting-data-item mb-4">
+              <p className="text-sm font-semibold text-gray-600">{settingType?.labelKey} :</p>
               <div className="device-slider mt-2">
                 <Slider
                   size="small"
@@ -114,17 +113,17 @@ const Device = ({ device, settingDatas, vibeId }) => {
                   onChangeCommitted={(event, newValue) => handleChangeCommitted(id, newValue)}
                   aria-label="Small"
                   valueLabelDisplay="auto"
+                  className="text-blue-500"
                 />
               </div>
             </div>
           );
         }
 
-        // Render color picker for hexadecimal values
         if (dataType === 'HEXA') {
           return (
-            <div key={id} className="setting-data-item">
-              <p>{settingType?.labelKey} :</p>
+            <div key={id} className="setting-data-item mb-4">
+              <p className="text-sm font-semibold text-gray-600">{settingType?.labelKey} :</p>
               <div className="device-slider mt-2">
                 <HexColorPicker
                   color={value}
@@ -132,18 +131,18 @@ const Device = ({ device, settingDatas, vibeId }) => {
                     handleSliderChange(id, newColor);
                     handleChangeCommitted(id, newColor);
                   }}
+                  className="rounded-md shadow-md"
                 />
               </div>
             </div>
           );
         }
 
-        // Render switch for On/Off values
         if (dataType === 'On/Off') {
           const checked = intToBoolean(value) ?? false;
           return (
-            <div key={id} className="setting-data-item">
-              <p>{settingType?.labelKey} :</p>
+            <div key={id} className="setting-data-item mb-4">
+              <p className="text-sm font-semibold text-gray-600">{settingType?.labelKey} :</p>
               <div className="device-slider mt-2">
                 <Switch
                   checked={checked}
@@ -171,7 +170,7 @@ const Device = ({ device, settingDatas, vibeId }) => {
 
         return null;
       })}
-    </>
+    </div>
   );
 };
 

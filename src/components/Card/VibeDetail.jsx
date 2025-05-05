@@ -36,20 +36,24 @@ const VibeDetail = () => {
   return loading ? (
     <PageLoader />
   ) : (
-    <div className="m-5 mx-auto max-w-[70%]">
+    <div className="m-5 mx-auto max-w-[70%] bg-white shadow-md rounded-lg p-6">
       <VibeForm vibe={vibeDetail} />
       <div className="pt-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {rooms.map((room) => (
-            <div key={room.id}>
-              <h3>{room.label}</h3>
+            <div key={room.id} className="bg-gray-100 p-4 rounded-lg shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">{room.label}</h3>
               {room?.devices?.map((device) => {
-                const filteredSettings = filterSettingDataByDeviceId(device.id); // Pass correct device.id
+                const filteredSettings = filterSettingDataByDeviceId(device.id);
                 console.log('filteredSettings', filteredSettings);
-                
+
                 return (
-                  <div key={device.id}>
-                    <Device device={device} settingDatas={filteredSettings} vibeId={vibeDetail.id} /> {/* Réintégration de Device */}
+                  <div key={device.id} className="mb-6">
+                    <Device
+                      device={device}
+                      settingDatas={filteredSettings}
+                      vibeId={vibeDetail.id}
+                    />
                   </div>
                 );
               })}
