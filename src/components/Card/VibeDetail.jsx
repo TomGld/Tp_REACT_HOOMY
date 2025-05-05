@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import selectVibeData from '../../store/vibe/vibeSelector';
+
 import { fetchVibeDetail } from '../../store/vibe/vibeSlice';
 import VibeSmall from './VibeSmall'; // Réintégration de l'import VibeSmall
 import { useParams, Link } from 'react-router-dom'; // Réintégration de l'import Link
@@ -9,6 +9,7 @@ import VibeForm from './VibeForm';
 import Device from '../Device/Device'; // Réintégration de l'import Device
 import { fetchRooms } from '../../store/room/roomSlice';
 import selectRoomData from '../../store/room/roomSelector';
+import selectVibeData from '../../store/Vibe/vibeSelector';
 
 const VibeDetail = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,6 @@ const VibeDetail = () => {
 
   // Récupération de la vibe dans le store
   const { loading, vibeDetail } = useSelector(selectVibeData);
-  const { rooms } = useSelector(selectRoomData);
 
   // Récupération des vibes existantes par le fetch
   useEffect(() => {
