@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl'
 import VibeSmall from '../Card/VibeSmall';
 import { useDispatch, useSelector } from 'react-redux';
-import selectVibeData from '../../store/Vibe/vibeSelector';
-import { fetchVibe } from '../../store/Vibe/vibeSlice';
+import selectVibeData from '../../store/vibe/vibeSelector';
+import { fetchVibe } from '../../store/vibe/vibeSlice';
 
 const ButtonVibe = ({ dataVibe }) => {
   const dispatch = useDispatch();

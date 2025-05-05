@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import VibeSmall from '../../components/Card/VibeSmall'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchVibe } from '../../store/vibe/vibeSlice';
-import selectVibeData from '../../store/Vibe/vibeSelector';
+import selectVibeData from '../../store/vibe/vibeSelector';
 
 const Vibe = () => {
     const dispatch = useDispatch();
