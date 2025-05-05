@@ -21,7 +21,6 @@ const VibeDetail = () => {
     dispatch(fetchVibeDetail(id));
   }, [dispatch, id]);
 
-  console.log('vibeDetail', vibeDetail);
 
   // Regrouper les appareils par pièce
   const rooms = vibeDetail?.rooms || [];
@@ -47,8 +46,6 @@ const VibeDetail = () => {
     acc[deviceId].settingDatas.push(data);
     return acc;
   }, {});
-
-  console.log('devicesGrouped', devicesGrouped);
 
   return loading ? (
     <PageLoader />

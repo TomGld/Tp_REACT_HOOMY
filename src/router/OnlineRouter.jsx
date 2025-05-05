@@ -9,6 +9,8 @@ import VibeDetail from "../components/Card/VibeDetail";
 import RoomDevice from "../screens/OnlineScreens/RoomDevice";
 import Planning from "../screens/OnlineScreens/Planning";
 import Playlist from "../screens/OnlineScreens/Playlist";
+import PlaylistDetail from "../screens/OnlineScreens/PlaylistDetail";
+import SongList from "../components/SongList";
 
 
 const OnlineRouter = createBrowserRouter([
@@ -47,6 +49,14 @@ const OnlineRouter = createBrowserRouter([
             {
                 path: "/playlists",
                 element: <Playlist />
+            },
+            {
+                path: "/playlists/:id",
+                element: <PlaylistDetail />
+            },
+            {
+                path: "/playlists/:id/add-song",
+                element: <SongList />
             }
         ]
     }
