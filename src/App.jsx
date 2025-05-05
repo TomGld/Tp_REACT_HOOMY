@@ -12,11 +12,11 @@ const App = () => {
   useAuthCheck(profile, setIsLoading);
 
   return (
-    <>
+    <div className="pb-10"> {/* Ajout d'un padding-bottom */}
       <TopBar />
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 };
 
