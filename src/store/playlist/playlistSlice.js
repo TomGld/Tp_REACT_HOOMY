@@ -54,13 +54,16 @@ export const fetchAllMusic = async (dispatch, start = 0, limit = 100) => {
 };
 
 // méthode pour créer une playlist
-export const createPlaylist = async (dispatch, playlistName) => {
+export const createPlaylist = async (dispatch, playlistName, profileName) => {
     try {
         dispatch(setLoading(true));
+        console.log('Creating playlist with name:', playlistName);
+        
 
         const response = await axios.post('http://localhost:8080/api/playlist/create', {
+            profile: profileName,
             name: playlistName,
-        });
+        })
 
         const newPlaylist = response.data;
         dispatch(setNewPlaylist(newPlaylist));
@@ -72,14 +75,15 @@ export const createPlaylist = async (dispatch, playlistName) => {
 };
 
 // méthode pour récupérer toutes les playlists
-export const fetchAllPlaylists = async (dispatch, start, limit) => {
+export const fetchAllPlaylists = async (dispatch, start, limit, profileName) => {
     try {
         dispatch(setLoading(true));
 
-        const response = await axios.post('http://localhost:8080/api/playlists', 
+        const response = await axios.post(`http://localhost:8080/api/playlists`, 
             {
                 start: 0,
                 limit: 100,
+                profileName: profileName,
         });
 
         const Playlists = response.data.playlists_loop || [];
